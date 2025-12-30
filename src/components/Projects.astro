@@ -1,6 +1,6 @@
 ---
-/* cosas del swiper */
-import Carrusel from "./carrusel/Carrusel.astro";
+import Content from "./projects/Content.astro";
+
 //imagenes del protecto gstion de edificios
 import img1 from "../../public/assets/images/proyge/pge1.webp";
 import img2 from "../../public/assets/images/proyge/pge2.webp";
@@ -63,15 +63,17 @@ const imagesp2 = [
   img32,
 ];
 
-interface project {
+export interface Project {
   title: string;
   tecnologies: string[];
   descripcion: string;
   images: ImageMetadata[];
   features?: string[];
+  urlRepo?: string;
+  urlDemo?: string;
 }
 
-const projects: project[] = [
+const projects: Project[] = [
   {
     title: "Sistema de Gestión de Edificios",
     tecnologies: ["Node.js", "Express", "React", "MySQL", "Git", "GitHub"],
@@ -84,6 +86,7 @@ const projects: project[] = [
       "Lógica de negocio real (pagos, reservas, facturación)",
       "Dashboards y métricas",
     ],
+    urlRepo: "https://github.com/jhoyer123/GestionEdificio.git",
   },
   {
     title: "Sistema de inventario con punto de venta",
@@ -97,6 +100,7 @@ const projects: project[] = [
       "Sistemas POS reales",
       "Reportes y dashboards",
     ],
+    urlRepo: "https://github.com/jhoyer123/ventas-dashboard.git",
   },
 ];
 ---
@@ -110,45 +114,6 @@ const projects: project[] = [
         Proyectos Académicos
       </h2>
     </div>
-
-    <div class="flex flex-col gap-20">
-      {
-        projects.map((p, index) => (
-          <div
-            class={`flex flex-col lg:flex-row gap-10 items-center ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}
-          >
-            <div class="w-full lg:w-3/5 rounded-2xl overflow-hidden shadow-2xl border border-gray-800 bg-gray-900/50 p-2">
-              <Carrusel images={p.images} />
-            </div>
-
-            <div class="w-full lg:w-2/5">
-              <div class="flex flex-wrap gap-2 mb-4">
-                {p.tecnologies.map((t) => (
-                  <span class="bg-blue-900/30 text-blue-400 border border-blue-800/50 px-3 py-1 rounded-full text-xs font-medium">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <h3 class="text-2xl font-hero font-semibold mb-4 text-white uppercase tracking-tight">
-                {p.title}
-              </h3>
-
-              <p class="text-gray-400 mb-6 leading-relaxed font-sans">
-                {p.descripcion}
-              </p>
-
-              <ul class="space-y-2 mb-8 font-sans text-gray-400">
-                {p.features?.map((feature) => (
-                  <li class="flex items-center text-sm">
-                    <span class="mr-2 text-blue-500">▹</span> {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ))
-      }
-    </div>
+    <Content projects={projects} />
   </div>
 </section>

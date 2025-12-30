@@ -1,0 +1,88 @@
+---
+import type { Project } from "../Projects.astro";
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+
+/* cosas del swiper */
+import Carrusel from "../carrusel/Carrusel.astro";
+import GitHub from "../icons/skills/Github.astro";
+---
+
+<div class="flex flex-col gap-20">
+  {
+    projects.map((p, index) => (
+      <div
+        class={`flex flex-col lg:flex-row gap-10 items-center ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}
+      >
+        <div class="w-full lg:w-3/5 rounded-2xl overflow-hidden shadow-2xl border border-gray-800 bg-gray-900/50 p-2">
+          <Carrusel images={p.images} />
+        </div>
+
+        <div class="w-full lg:w-2/5">
+          <div class="flex flex-wrap gap-2 mb-4">
+            {p.tecnologies.map((t) => (
+              <span class="bg-blue-900/30 text-blue-400 border border-blue-800/50 px-3 py-1 rounded-full text-xs font-medium">
+                {t}
+              </span>
+            ))}
+          </div>
+
+          <h3 class="text-2xl font-hero font-semibold mb-4 text-white uppercase tracking-tight">
+            {p.title}
+          </h3>
+
+          <p class="text-gray-400 mb-6 leading-relaxed font-sans">
+            {p.descripcion}
+          </p>
+
+          <ul class="space-y-2 mb-6 font-sans text-gray-400">
+            {p.features?.map((feature) => (
+              <li class="flex items-center text-sm">
+                <span class="mr-2 text-blue-500">▹</span> {feature}
+              </li>
+            ))}
+          </ul>
+
+          <div class="flex flex-wrap gap-4 w-full">
+            <a
+              aria-label={`Ver repositorio del proyecto ${p.title}`}
+              href={p.urlRepo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-5 px-4 py-2.5 rounded-xl 
+           bg-gray-900 border border-gray-700 
+           text-white text-sm font-medium
+           hover:border-blue-500 hover:text-blue-400
+           transition-all duration-300"
+            >
+              <div class="w-8">
+                <GitHub />
+              </div>
+              Ver Repositorio
+            </a>
+
+            {p.urlDemo && (
+              <a
+                aria-label={`Ver demo del proyecto ${p.title}`}
+                href={p.urlDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl 
+             bg-blue-600/10 border border-blue-500/30 
+             text-blue-400 text-sm font-medium
+             hover:bg-blue-600/20
+             transition-all duration-300"
+              >
+                Ver Demo
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>
