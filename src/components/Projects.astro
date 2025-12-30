@@ -2,22 +2,21 @@
 /* cosas del swiper */
 import Carrusel from "./carrusel/Carrusel.astro";
 //imagenes del protecto gstion de edificios
-import img1 from "../assets/images/proyge/pge1.webp";
-import img2 from "../assets/images/proyge/pge2.webp";
-import img3 from "../assets/images/proyge/pge3.webp";
-import img4 from "../assets/images/proyge/pge4.webp";
-import img5 from "../assets/images/proyge/pge5.webp";
-import img6 from "../assets/images/proyge/pge6.webp";
-import img7 from "../assets/images/proyge/pge7.webp";
-import img8 from "../assets/images/proyge/pge8.webp";
-import img9 from "../assets/images/proyge/pge9.webp";
-import img10 from "../assets/images/proyge/pge10.webp";
-import img12 from "../assets/images/proyge/pge12.webp";
-import img13 from "../assets/images/proyge/pge13.webp";
-import img15 from "../assets/images/proyge/pge15.webp";
-import img16 from "../assets/images/proyge/pge16.webp";
-import img17 from "../assets/images/proyge/pge17.webp";
-
+import img1 from "../../public/assets/images/proyge/pge1.webp";
+import img2 from "../../public/assets/images/proyge/pge2.webp";
+import img3 from "../../public/assets/images/proyge/pge3.webp";
+import img4 from "../../public/assets/images/proyge/pge4.webp";
+import img5 from "../../public/assets/images/proyge/pge5.webp";
+import img6 from "../../public/assets/images/proyge/pge6.webp";
+import img7 from "../../public/assets/images/proyge/pge7.webp";
+import img8 from "../../public/assets/images/proyge/pge8.webp";
+import img9 from "../../public/assets/images/proyge/pge9.webp";
+import img10 from "../../public/assets/images/proyge/pge10.webp";
+import img12 from "../../public/assets/images/proyge/pge12.webp";
+import img13 from "../../public/assets/images/proyge/pge13.webp";
+import img15 from "../../public/assets/images/proyge/pge15.webp";
+import img16 from "../../public/assets/images/proyge/pge16.webp";
+import img17 from "../../public/assets/images/proyge/pge17.webp";
 const imagesp1 = [
   img1,
   img2,
@@ -37,18 +36,18 @@ const imagesp1 = [
 ];
 
 //imagenes del proyecto sistema de inventario con punto de venta
-import img21 from "../assets/images/proysv/psv1.webp";
-import img22 from "../assets/images/proysv/psv2.webp";
-import img23 from "../assets/images/proysv/psv3.webp";
-import img24 from "../assets/images/proysv/psv4.webp";
-import img25 from "../assets/images/proysv/psv5.webp";
-import img26 from "../assets/images/proysv/psv6.webp";
-import img27 from "../assets/images/proysv/psv7.webp";
-import img28 from "../assets/images/proysv/psv8.webp";
-import img29 from "../assets/images/proysv/psv9.webp";
-import img30 from "../assets/images/proysv/psv10.webp";
-import img31 from "../assets/images/proysv/psv11.webp";
-import img32 from "../assets/images/proysv/psv12.webp";
+import img21 from "../../public/assets/images/proysv/psv1.webp";
+import img22 from "../../public/assets/images/proysv/psv2.webp";
+import img23 from "../../public/assets/images/proysv/psv3.webp";
+import img24 from "../../public/assets/images/proysv/psv4.webp";
+import img25 from "../../public/assets/images/proysv/psv5.webp";
+import img26 from "../../public/assets/images/proysv/psv6.webp";
+import img27 from "../../public/assets/images/proysv/psv7.webp";
+import img28 from "../../public/assets/images/proysv/psv8.webp";
+import img29 from "../../public/assets/images/proysv/psv9.webp";
+import img30 from "../../public/assets/images/proysv/psv10.webp";
+import img31 from "../../public/assets/images/proysv/psv11.webp";
+import img32 from "../../public/assets/images/proysv/psv12.webp";
 const imagesp2 = [
   img21,
   img22,
@@ -135,7 +134,9 @@ const projects: project[] = [
                 {p.title}
               </h3>
 
-              <p class="text-gray-400 mb-6 leading-relaxed font-sans">{p.descripcion}</p>
+              <p class="text-gray-400 mb-6 leading-relaxed font-sans">
+                {p.descripcion}
+              </p>
 
               <ul class="space-y-2 mb-8 font-sans text-gray-400">
                 {p.features?.map((feature) => (
