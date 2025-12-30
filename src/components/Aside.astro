@@ -1,0 +1,110 @@
+---
+import HomeIcon from "./icons/HomeIcon.astro";
+import AbautIcon from "./icons/AbautIcon.astro";
+import ProjectsIcon from "./icons/ProjectsIcon.astro";
+import ContactIcon from "./icons/Contact.astro";
+import Skills from "./icons/Skills.astro";
+
+const links = [
+  { href: "/", label: "Inicio", icon: HomeIcon },
+  { href: "#about", label: "Sobre mí", icon: AbautIcon },
+  { href: "#projects", label: "Proyectos", icon: ProjectsIcon },
+  { href: "#skills", label: "Habilidades", icon: Skills },
+  { href: "#contact", label: "Contacto", icon: ContactIcon },
+];
+---
+
+<!-- BOTÓN HAMBURGUESA -->
+<button
+  id="menu-btn"
+  class="md:hidden fixed top-4 left-4 z-60 p-3 bg-gray-600 text-white rounded-lg cursor-pointer"
+  aria-label="Abrir menú"
+>
+  <svg
+    id="icon-open"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-6 h-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M4 6h16M4 12h16m0 6H4"></path>
+  </svg>
+  <svg
+    id="icon-close"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-6 h-6 hidden z-100"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M6 18L18 6M6 6l12 12"></path>
+  </svg>
+</button>
+
+<!-- SIDEBAR -->
+<aside
+  id="sidebar"
+  class="/* --- ESTADO MÓVIL (Oculto por defecto con transform) --- */
+    fixed top-0 left-0 h-screen w-screen md:hidden/* <-- Ancho y alto definidos */
+    bg-gray-900 p-4
+    -translate-x-full /* <-- Estado inicial: Oculto fuera de pantalla */
+    transform transition-transform duration-300 ease-in-out
+    md:transition-none /* <-- Transición */
+    z-50 rounded-r-lg border-2 border-solid border-amber-50
+    /* --- ESTADO DESKTOP (Lo convierte en Navbar horizontal) --- */
+    md:fixed md:translate-x-0 md:h-auto md:w-full
+    md:top-0 md:pt-0 md:pb-0 md:rounded-none md:border-0 md:bg-black"
+>
+  <div
+    class="flex flex-col gap-10 h-full my-auto items-center justify-center w-full
+  md:flex-row md:justify-between md:px-10
+  lg:px-20
+  xl:px-60"
+  >
+    <div class="md:hidden">
+      <img
+        src="/src/assets/profile/profile.webp"
+        alt="imagen de perfil de jhoyer"
+        class="rounded-full h-32"
+      />
+    </div>
+
+    <div
+      class="md:block md:text-3xl md:text-white md:font-hero md:font-extrabold"
+    >
+      <span>JVG</span>
+    </div>
+
+    <ul
+      class="flex flex-col items-center justify-center md:flex-row md:justify-center gap-4 text-gray-300 w-full py-2 md:text-base
+      md:w-auto md:gap-10 md:py-1
+      lg:gap-13"
+    >
+      {
+        links.map((link) => (
+          <li
+            class="w-auto min-w-[200px] bg-gray-700/40 py-2 px-8 flex items-center justify-start gap-3 rounded-2xl hover:bg-gray-700 hover:text-white transition
+          md:text-gray-300 md:hover:text-gray-50 md:hover:scale-110 md:bg-black md:min-w-auto md:px-0 md:gap-0 md:hover:bg-transparent  
+          "
+          >
+            <div class="md:hidden">
+              <link.icon />
+            </div>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</aside>
+
+<script src="../scripts/sidebar.js"></script>

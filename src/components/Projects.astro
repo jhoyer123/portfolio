@@ -1,0 +1,153 @@
+---
+/* cosas del swiper */
+import Carrusel from "./carrusel/Carrusel.astro";
+//imagenes del protecto gstion de edificios
+import img1 from "../assets/images/proyge/pge1.webp";
+import img2 from "../assets/images/proyge/pge2.webp";
+import img3 from "../assets/images/proyge/pge3.webp";
+import img4 from "../assets/images/proyge/pge4.webp";
+import img5 from "../assets/images/proyge/pge5.webp";
+import img6 from "../assets/images/proyge/pge6.webp";
+import img7 from "../assets/images/proyge/pge7.webp";
+import img8 from "../assets/images/proyge/pge8.webp";
+import img9 from "../assets/images/proyge/pge9.webp";
+import img10 from "../assets/images/proyge/pge10.webp";
+import img12 from "../assets/images/proyge/pge12.webp";
+import img13 from "../assets/images/proyge/pge13.webp";
+import img15 from "../assets/images/proyge/pge15.webp";
+import img16 from "../assets/images/proyge/pge16.webp";
+import img17 from "../assets/images/proyge/pge17.webp";
+
+const imagesp1 = [
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+  img9,
+  img10,
+  img12,
+  img13,
+  img15,
+  img16,
+  img17,
+];
+
+//imagenes del proyecto sistema de inventario con punto de venta
+import img21 from "../assets/images/proysv/psv1.webp";
+import img22 from "../assets/images/proysv/psv2.webp";
+import img23 from "../assets/images/proysv/psv3.webp";
+import img24 from "../assets/images/proysv/psv4.webp";
+import img25 from "../assets/images/proysv/psv5.webp";
+import img26 from "../assets/images/proysv/psv6.webp";
+import img27 from "../assets/images/proysv/psv7.webp";
+import img28 from "../assets/images/proysv/psv8.webp";
+import img29 from "../assets/images/proysv/psv9.webp";
+import img30 from "../assets/images/proysv/psv10.webp";
+import img31 from "../assets/images/proysv/psv11.webp";
+import img32 from "../assets/images/proysv/psv12.webp";
+const imagesp2 = [
+  img21,
+  img22,
+  img23,
+  img24,
+  img25,
+  img26,
+  img27,
+  img28,
+  img29,
+  img30,
+  img31,
+  img32,
+];
+
+interface project {
+  title: string;
+  tecnologies: string[];
+  descripcion: string;
+  images: ImageMetadata[];
+  features?: string[];
+}
+
+const projects: project[] = [
+  {
+    title: "Sistema de Gestión de Edificios",
+    tecnologies: ["Node.js", "Express", "React", "MySQL", "Git", "GitHub"],
+    descripcion:
+      "Sistema web integral para la administración de edificios, que permite gestionar residentes, personal, áreas comunes, pagos y facturación. Incluye autenticación segura con control de roles y 2FA, módulo de reservas con validación de horarios, pagos mediante QR y generación automática de facturas. El sistema cuenta con un dashboard con métricas clave sobre el estado financiero y operativo del edificio, además de gestión de anuncios y comunicación interna según el rol del usuario.",
+    images: imagesp1,
+    features: [
+      "Modelado de datos complejo",
+      "Control de roles y permisos",
+      "Lógica de negocio real (pagos, reservas, facturación)",
+      "Dashboards y métricas",
+    ],
+  },
+  {
+    title: "Sistema de inventario con punto de venta",
+    tecnologies: ["React", "Supabase", "Git", "GitHub"],
+    descripcion:
+      "Sistema desarrollado con arquitectura de datos robusta para gestionar productos y ventas de manera eficiente. Incluye funcionalidades como control de stock, generación de recibos de venta, y reportes detallados de ventas e inventario. La interfaz es intuitiva y fácil de usar, facilitando la operación diaria del negocio ademas el sistema es multisucrsal con informacion especifica o global gestion de usuarios y roles moviemietnos de transferencia entre sucrusaels stock productos por sucursal dashboard con metricas de ventas y deudas pendientes diarios y mesual cuenta con un pos intuitivo el manejo de usuarios es para empleados direferenciados por roles.",
+    images: imagesp2,
+    features: [
+      "Arquitectura de datos sólida",
+      "Manejo de inventario multi-sucursal",
+      "Sistemas POS reales",
+      "Reportes y dashboards",
+    ],
+  },
+];
+---
+
+<section id="projects" class="py-20 px-4 bg-slate-950 text-gray-200">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2
+        class="inline-block font-hero text-3xl font-bold border-b-4 border-blue-500 pb-2 text-white"
+      >
+        Proyectos Académicos
+      </h2>
+    </div>
+
+    <div class="flex flex-col gap-20">
+      {
+        projects.map((p, index) => (
+          <div
+            class={`flex flex-col lg:flex-row gap-10 items-center ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}
+          >
+            <div class="w-full lg:w-3/5 rounded-2xl overflow-hidden shadow-2xl border border-gray-800 bg-gray-900/50 p-2">
+              <Carrusel images={p.images} />
+            </div>
+
+            <div class="w-full lg:w-2/5">
+              <div class="flex flex-wrap gap-2 mb-4">
+                {p.tecnologies.map((t) => (
+                  <span class="bg-blue-900/30 text-blue-400 border border-blue-800/50 px-3 py-1 rounded-full text-xs font-medium">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <h3 class="text-2xl font-hero font-semibold mb-4 text-white uppercase tracking-tight">
+                {p.title}
+              </h3>
+
+              <p class="text-gray-400 mb-6 leading-relaxed font-sans">{p.descripcion}</p>
+
+              <ul class="space-y-2 mb-8 font-sans text-gray-400">
+                {p.features?.map((feature) => (
+                  <li class="flex items-center text-sm">
+                    <span class="mr-2 text-blue-500">▹</span> {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

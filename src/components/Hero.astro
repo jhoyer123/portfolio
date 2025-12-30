@@ -1,0 +1,107 @@
+---
+import GitHub from "../components/icons/skills/Github.astro";
+import Linkedin from "../components/icons/skills/Linkedin.astro";
+---
+
+<section id="inicio" class="h-screen relative">
+  <!-- contenido hero -->
+  <div
+    class="min-h-screen flex items-center bg-neutral-900 text-white px-8
+  md:pb-0
+  sm:px-15 sm:items-center
+  lg:px-30"
+  >
+    <div class="z-20">
+      <!-- Nombre -->
+      <p
+        class="font-hero font-light text-3xl tracking-widest uppercase
+      md:text-4xl"
+      >
+        Jhoyer
+      </p>
+
+      <!-- Apellido -->
+      <h1
+        class="font-hero font-extrabold text-6xl md:text-8xl leading-none uppercase"
+      >
+        Vega G.
+      </h1>
+
+      <!-- Profesión -->
+      <p
+        class="font-hero font-light text-sm tracking-[0.35em] mt-4 uppercase
+        md:text-base"
+      >
+        Desarrollador Web Full Stack
+      </p>
+
+      <!-- Botones -->
+      <div class="flex gap-4 mt-8
+      sm:gap-10">
+        <a
+          href="#about"
+          class="px-6 py-2 border border-white/60 rounded-full text-sm font-medium font-sans hover:bg-white hover:text-black transition cursor-pointer hover:scale-110 duration-300"
+        >
+          Sobre Mí
+        </a>
+        <a
+          href="#projects"
+          class="px-6 py-2 border border-white/60 rounded-full text-sm font-medium fron-sans bg-white text-black hover:bg-black hover:text-white transition cursor-pointer hover:scale-110 duration-300"
+        >
+          Proyectos
+        </a>
+      </div>
+    </div>
+    <!-- links a linkedin y github -->
+    <div
+      class="w-auto flex gap-10 items-center justify-center absolute bottom-8 left-8 z-10
+        sm:bottom-15 sm:left-15
+        md:bottom-20 md:left-25 md:gap-20
+        lg:bottom-0 lg:top-0 lg:right-30 lg:justify-end"
+    >
+      <div
+        class="mt-8 w-10 h-10 text-[#007EBB] hover:scale-110 transition-transform duration-300
+          sm:w-12 sm:h-12
+          md:w-14 md:h-14"
+      >
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/jhoyer-vega-guarachi-431b24342/"
+          aria-label="LinkedIn link"><Linkedin /></a
+        >
+      </div>
+      <div
+        class="bg-black mt-8 rounded-full w-10 h-10 hover:scale-110 transition-transform duration-300
+           sm:w-12 sm:h-12
+           md:w-14 md:h-14"
+      >
+        <a
+          target="_blank"
+          href="https://github.com/jhoyer123"
+          aria-label="GitHub link"
+          class="hover:scale-3d"><GitHub /></a
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- fondo hero -->
+  <div class="hidden absolute inset-0 md:block">
+    <img
+      src="/src/assets/images/fondos/fondodescktop.webp"
+      alt=""
+      class="w-full h-full object-cover contrast-90 brightness-50"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
+  <div class="absolute inset-0 md:hidden">
+    <img
+      src="/src/assets/images/fondos/fondoMobile.webp"
+      alt=""
+      class="w-full h-full object-cover contrast-90 brightness-50"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
+</section>

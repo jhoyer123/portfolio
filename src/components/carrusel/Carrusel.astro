@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  images: ImageMetadata[];
+}
+const { images } = Astro.props;
+---
+
+<div class="swiper mySwiper w-full lg:h-[450px] sm:h-90 h-50 relative group">
+  <div class="swiper-wrapper">
+    {
+      images.map((img) => (
+        <div class="swiper-slide bg-gray-100 rounded-2xl p-2">
+          <Image
+            src={img}
+            alt="Imagen del proyecto"
+            loading="lazy"
+            class="w-full h-full object-contain rounded-2xl drop-shadow-md"
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="swiper-pagination"></div>
+
+  <div class="swiper-button-prev lg:opacity-0 group-hover:opacity-100"></div>
+  <div class="swiper-button-next lg:opacity-0 group-hover:opacity-100"></div>
+
+  <div class="swiper-scrollbar"></div>
+</div>
+
+<script>
+  // 1. Importar el Core de Swiper
+  import Swiper from "swiper";
+
+  // 2. ¡IMPORTANTE! Importar los módulos necesarios
+  import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+  // 3. Importar los CSS de CADA módulo (si no, los botones salen invisibles o feos)
+  import "swiper/css";
+  import "swiper/css/navigation";
+  import "swiper/css/pagination";
+
+  // 4. Inicializar inyectando los módulos
+  const swiper = new Swiper(".mySwiper", {
+    // Aquí es donde sucede la magia:
+    modules: [Navigation, Pagination, Autoplay],
+
+    spaceBetween: 30,
+    centeredSlides: true,
+    loop: true, // Recomendado para carruseles infinitos
+
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+
+<style>
+  /* Personalización opcional para que los botones de Swiper 
+     coincidan con tu dashboard (por defecto son azules) */
+  :root {
+    --swiper-theme-color: #000; /* Cambia el color de las flechas/puntos */
+    --swiper-navigation-size: 25px; /* Tamaño de las flechas */
+  }
+</style>

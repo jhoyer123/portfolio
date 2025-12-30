@@ -1,0 +1,115 @@
+<section id="contact" class="py-10 px-6 bg-gray-800 text-gray-200 text-center">
+  <div class="flex flex-col items-center justify-center gap-6">
+    <h2 class="text-3xl font-bold text-white border-b-4 border-blue-400">
+      Contactame
+    </h2>
+
+    <div
+      class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-10"
+    >
+      <div class="flex flex-col gap-4 items-center lg:items-center lg:text-xl">
+        <p class="text-gray-400 lg:max-w-[450px]">
+          "Abierto a desafíos y propuestas. Hablemos de tu proyecto o vacante.
+          ¡Te leo!"
+        </p>
+        <!-- poner mi corro aqui -->
+        <span>Correo de contacto:</span>
+        <a
+          href="mailto:tuemail@example.com"
+          class="text-blue-400 hover:underline">jhoyervg@gmail.com</a
+        >
+      </div>
+
+      <!-- formulario de contacto -->
+      <form id="contactForm" class="space-y-4 max-w-xl lg:w-xl">
+        <div
+          class="flex items-center justify-center gap-2 bg-black/30 py-1 px-4 border border-gray-500"
+        >
+          <label for="name">Nombre:</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Tu nombre"
+            required
+            class="w-full p-3 rounded-lg text-white placeholder-gray-400 outline-none"
+          />
+        </div>
+
+        <div
+          class="flex items-center justify-center gap-2 bg-black/30 py-1 px-4 border border-gray-500"
+        >
+          <label for="email">Correo:</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Tu correo"
+            required
+            class="w-full p-3 rounded-lg text-whit placeholder-gray-400 outline-none"
+          />
+        </div>
+        <div
+          class="flex flex-col gap-2 bg-black/30 py-3 px-4 border border-gray-500"
+        >
+          <label for="message" class="text-start">Mensaje:</label>
+          <textarea
+            name="message"
+            placeholder="Tu mensaje"
+            rows="7"
+            required
+            class="w-full p-1 rounded-lg text-white placeholder-gray-400 outline-none resize-none row-end-5"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-black hover:bg-black/40 text-white font-semibold py-3 rounded-lg transition cursor-pointer border border-gray-500 hover:scale-102 duration-300"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+
+    <p id="status" class="hidden text-green-300 text-sm">Mensaje enviado ✅</p>
+  </div>
+</section>
+
+<!-- service_4675xmw-->
+
+<script>
+  import emailjs from "@emailjs/browser";
+
+  //Obtenemos los elementos y le decimos a TypeScript qué son exactamente
+  const form = document.getElementById("contactForm") as HTMLFormElement;
+  const status = document.getElementById("status") as HTMLElement;
+
+  if (form && status) {
+    emailjs.init("ZHiOpLHFKZtmb7EIJ");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Opcional: Mostrar "Enviando..."
+      const btn = form.querySelector("button");
+      if (btn) btn.innerText = "Enviando...";
+
+      emailjs
+        .sendForm("service_4675xmw", "template_v3ew4zh", form)
+        .then(() => {
+          // Éxito
+          status.classList.remove("hidden");
+          form.reset(); // Ahora sí funciona porque le dijimos que es un HTMLFormElement
+          if (btn) btn.innerText = "Enviar";
+
+          // Ocultar mensaje de éxito después de 5 segundos
+          setTimeout(() => {
+            status.classList.add("hidden");
+          }, 5000);
+        })
+        .catch((error) => {
+          // Error
+          console.error("Error:", error);
+          alert("Error al enviar el mensaje");
+          if (btn) btn.innerText = "Enviar";
+        });
+    });
+  }
+</script>
