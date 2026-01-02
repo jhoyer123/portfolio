@@ -3,22 +3,18 @@ import GitHub from "../components/icons/skills/Github.astro";
 import LinkedIn from "../components/icons/skills/Linkedin.astro";
 ---
 
-<footer class="bg-gray-900 text-white py-6 text-center font-sans">
+<footer class="bg-gray-900 text-white py-8 text-center font-sans">
   <div class="px-10">
-    <p class="text-sm">
-      © 2025 JHOYER VEGA GUARACHI. Todos los derechos reservados.
-    </p>
-
     <!-- links a linkedin y github -->
-    <div class="flex gap-10 items-center justify-center">
-      <div class="bg-black mt-8 rounded-full w-10 h-10">
+    <div class="flex gap-20 items-center justify-center mb-8">
+      <div class="bg-black rounded-full w-10 h-10 hover:scale-105 transition duration-300">
         <a
           target="_blank"
           href="https://github.com/jhoyer123"
           aria-label="GitHub link"><GitHub /></a
         >
       </div>
-      <div class="mt-8 w-10 h-10 text-[#007EBB]">
+      <div class="w-10 h-10 text-[#007EBB] hover:scale-105 transition duration-300">
         <a
           target="_blank"
           href="https://www.linkedin.com/in/jhoyer-vega-guarachi-431b24342/"
@@ -26,5 +22,8 @@ import LinkedIn from "../components/icons/skills/Linkedin.astro";
         >
       </div>
     </div>
+    <p class="text-sm">
+      © 2025 JHOYER VEGA GUARACHI. Todos los derechos reservados.
+    </p>
   </div>
 </footer>

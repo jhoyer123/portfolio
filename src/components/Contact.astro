@@ -1,4 +1,4 @@
-<section id="contact" class="py-10 px-6 bg-gray-800 text-gray-200 text-center">
+<section id="contact" class="py-15 px-6 bg-gray-800 text-gray-200 text-center">
   <div class="flex flex-col items-center justify-center gap-6">
     <h2 class="text-3xl font-bold text-white border-b-4 border-blue-400">
       Contactame
@@ -7,7 +7,9 @@
     <div
       class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-10"
     >
-      <div class="flex flex-col gap-4 items-start justify-start lg:items-center lg:text-xl max-w-130">
+      <div
+        class="flex flex-col gap-4 items-start justify-start lg:items-center lg:text-xl max-w-130"
+      >
         <p class="text-gray-400 leading-relaxed">
           Actualmente me encuentro abierto a oportunidades laborales y prácticas
           profesionales donde pueda aportar mis conocimientos como desarrollador
@@ -21,8 +23,8 @@
         <!-- poner mi corro aqui -->
         <span>Correo de contacto:</span>
         <a
-          href="mailto:tuemail@example.com"
-          class="text-blue-400 hover:underline">jhoyervg@gmail.com</a
+          href="mailto:jhoyervegaguarachi@gmail.com"
+          class="text-blue-400 hover:underline">jhoyervegaguarachi@gmail.com</a
         >
       </div>
 
@@ -71,10 +73,11 @@
         >
           Enviar
         </button>
+        <p id="status" class="hidden text-green-200 text-sm">
+          Mensaje enviado!
+        </p>
       </form>
     </div>
-
-    <p id="status" class="hidden text-green-300 text-sm">Mensaje enviado</p>
   </div>
 </section>
 
@@ -95,7 +98,10 @@
 
       // Opcional: Mostrar "Enviando..."
       const btn = form.querySelector("button");
-      if (btn) btn.innerText = "Enviando...";
+      if (btn) {
+        btn.innerText = "Enviando...";
+        btn.disabled = true;
+      }
 
       emailjs
         .sendForm("service_4675xmw", "template_v3ew4zh", form)
