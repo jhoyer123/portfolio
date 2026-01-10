@@ -1,6 +1,7 @@
 ---
 import GitHub from "../components/icons/skills/Github.astro";
 import Linkedin from "../components/icons/skills/Linkedin.astro";
+import Download from "../components/icons/Download.astro";
 ---
 
 <section id="inicio" class="h-screen relative">
@@ -14,7 +15,7 @@ import Linkedin from "../components/icons/skills/Linkedin.astro";
     <div class="z-20">
       <!-- Nombre -->
       <p
-        class="font-hero font-light text-3xl tracking-widest uppercase
+        class="font-hero font-light text-3xl tracking-widest uppercase animate-fade-up animate-infinite animate-duration-[3000ms] animate-delay-[1ms]
       md:text-4xl"
       >
         Jhoyer
@@ -22,7 +23,7 @@ import Linkedin from "../components/icons/skills/Linkedin.astro";
 
       <!-- Apellido -->
       <h1
-        class="font-hero font-extrabold text-6xl md:text-8xl leading-none uppercase"
+        class="font-hero font-extrabold text-5xl sm:text-6xl md:text-8xl leading-none uppercase"
       >
         Vega G.
       </h1>
@@ -82,6 +83,25 @@ import Linkedin from "../components/icons/skills/Linkedin.astro";
           class="hover:scale-3d"><GitHub /></a
         >
       </div>
+      <!-- boton download cv -->
+      <div
+        class="bg-blue-600 mt-8 rounded-full w-20 h-10 hover:scale-110 transition-transform duration-300
+           sm:w-24 sm:h-12
+           md:w-24 md:h-14
+           lg:absolute lg:top-8 lg:right-0"
+      >
+        <a
+          href="/cv.pdf"
+          download="cv.pdf"
+          class="flex gap-2 items-center justify-center h-full w-full"
+          area-label="Download CV"
+        >
+          <div class="size-5 animate-bounce mt-1">
+            <Download class="animate-bounce" />
+          </div>
+          <p class="text-white text-sm my-auto">CV</p>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -99,7 +119,7 @@ import Linkedin from "../components/icons/skills/Linkedin.astro";
     <img
       src="/assets/images/fondos/fondoMobile.webp"
       alt=""
-      class=  "w-full h-full object-cover contrast-90 brightness-50"
+      class="w-full h-full object-cover contrast-90 brightness-50"
       loading="eager"
       decoding="async"
     />
