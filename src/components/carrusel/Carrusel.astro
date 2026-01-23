@@ -7,16 +7,22 @@ interface Props {
 const { images } = Astro.props;
 ---
 
-<div class="swiper mySwiper w-full lg:h-[450px] sm:h-90 h-50 relative group">
-  <div class="swiper-wrapper">
+<div
+  class="swiper mySwiper w-full lg:h-[450px] sm:h-90 h-50 relative group galery"
+>
+  <div class="swiper-wrapper galery-content">
     {
       images.map((img) => (
-        <div class="swiper-slide bg-gray-100 rounded-2xl p-2">
+        <div class="swiper-slide bg-gray-100 rounded-2xl p-2 item-galery">
           <Image
             src={img}
+            quality={100}
             alt="Imagen del proyecto"
             loading="lazy"
-            class="w-full h-full object-contain rounded-2xl drop-shadow-md"
+            width={1600}
+            height={794}
+            sizes="(max-width: 768px) 100vw, 90vw"
+            class="w-full h-full object-contain rounded-2xl"
           />
         </div>
       ))
@@ -25,25 +31,27 @@ const { images } = Astro.props;
 
   <div class="swiper-pagination"></div>
 
-  <div class="swiper-button-prev lg:opacity-0 group-hover:opacity-100"></div>
-  <div class="swiper-button-next lg:opacity-0 group-hover:opacity-100"></div>
+  <div class="swiper-button-prev lg:opacity-0 group-hover:opacity-100 z-10">
+  </div>
+  <div class="swiper-button-next lg:opacity-0 group-hover:opacity-100 z-10">
+  </div>
 
   <div class="swiper-scrollbar"></div>
 </div>
 
 <script>
-  // 1. Importar el Core de Swiper
+  //Importar el Core de Swiper
   import Swiper from "swiper";
 
-  // 2. ¡IMPORTANTE! Importar los módulos necesarios
+  //¡IMPORTANTE! Importar los módulos necesarios
   import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
-  // 3. Importar los CSS de CADA módulo (si no, los botones salen invisibles o feos)
+  //Importar los CSS de CADA módulo (si no, los botones salen invisibles o feos)
   import "swiper/css";
   import "swiper/css/navigation";
   import "swiper/css/pagination";
 
-  // 4. Inicializar inyectando los módulos
+  //Inicializar inyectando los módulos
   const swiper = new Swiper(".mySwiper", {
     // Aquí es donde sucede la magia:
     modules: [Navigation, Pagination, Autoplay],
@@ -65,13 +73,67 @@ const { images } = Astro.props;
       prevEl: ".swiper-button-prev",
     },
   });
+
+  //expandir galeria en modal al hacer click
+  document.querySelectorAll(".galery").forEach((galeria) => {
+    galeria.querySelectorAll("img").forEach((img) => {
+      img.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const expanded = galeria.classList.toggle("expanded");
+        document.body.style.overflow = expanded ? "hidden" : "";
+        swiper.update();
+      });
+    });
+  });
 </script>
 
 <style>
-  /* Personalización opcional para que los botones de Swiper 
-     coincidan con tu dashboard (por defecto son azules) */
-  :root {
-    --swiper-theme-color: #000; /* Cambia el color de las flechas/puntos */
-    --swiper-navigation-size: 25px; /* Tamaño de las flechas */
+  .galery.expanded {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    cursor: zoom-out;
+  }
+
+  .galery.expanded .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: none;
+    background-color: transparent;
+    border-radius: 0;
+  }
+
+  .galery.expanded img {
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0;
+  }
+
+  /* Desktop */
+  @media (min-width: 768px) {
+    .galery.expanded img {
+      max-width: 80%;
+      max-height: 80vh;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .galery.expanded img {
+      max-width: 100%;
+      max-height: 90vh;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .galery.expanded .swiper-button-prev,
+    .galery.expanded .swiper-button-next {
+      display: none;
+    }
   }
 </style>

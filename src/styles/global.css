@@ -7,3 +7,90 @@
   --font-sans: "Inter", "sans-serif";
   --font-hero: "Montserrat", "sans-serif";
 }
+
+@layer base {
+  :root {
+    /* BACKGROUNDS */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+    --background-view: #fffffc;
+
+    --card-accent: #000000;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    /* SECONDARY: Sofisticación técnica */
+    --secondary: 220 10% 94%;
+    --secondary-foreground: 220 20% 20%;
+
+    /* RADIUS */
+    --radius: 0.5rem;
+    /* BORDERS / INPUT */
+    --border: 210 15% 85%;
+    --input: 210 15% 85%;
+
+    /* GLASS EFFECT */
+    --glass: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.18;
+
+    --btn-cv: 0 0% 10%; /* Negro */
+    --btn-cv-fg: 0 0% 100%;
+  }
+
+  .dark {
+    /* BACKGROUNDS */
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+    --background-view: #212529;
+
+    --card-accent: #606B73;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+
+    /* SECONDARY - Grises oscuros elegantes */
+    --secondary: 210 10% 20%;
+    --secondary-foreground: 0 0% 95%;
+
+    /* MUTED: Para textos secundarios que no distraigan */
+    --muted: 220 10% 15%;
+    --muted-foreground: 220 5% 65%;
+
+    /* BORDERS / INPUT */
+    --border: 210 8% 22%;
+    --input: 210 8% 22%;
+
+    /* GLASS EFFECT */
+    --glass: 0 0% 8% / 0.7;
+    --glass-border: 0 0% 95% / 0.18;
+
+    --btn-cv: 0 0% 98%; /* Blanco */
+    --btn-cv-fg: 0 0% 5%;
+  }
+
+  html {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/* MAPEO DE COLORES PARA TAILWIND */
+@theme inline {
+  --color-background: hsl(var(--background));
+
+  --color-background-view: var(--background-view);
+  --color-card-accent: var(--card-accent);
+
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-btn-cv: hsl(var(--btn-cv));
+  --color-btn-cv-foreground: hsl(var(--btn-cv-fg));
+}

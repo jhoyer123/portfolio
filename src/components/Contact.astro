@@ -1,37 +1,38 @@
-<section id="contact" class="py-15 px-6 bg-gray-800 text-gray-200 text-center">
+---
+import Successfull from "./icons/contact/Successfull.astro";
+---
+
+<section id="contact" class="py-15 px-6 bg-background text-center">
   <div class="flex flex-col items-center justify-center gap-6">
-    <h2 class="text-3xl font-bold text-white border-b-4 border-blue-500">
-      Contactame
+    <h2 class="text-3xl font-bold text-foreground border-b-4 border-card-accent">
+      Contacto
     </h2>
 
     <div
       class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-10"
     >
       <div
-        class="flex flex-col gap-4 items-start justify-start lg:items-center lg:text-xl max-w-130"
+        class="flex flex-col gap-4 items-start justify-start lg:items-center lg:text-md max-w-130 md:px-10"
       >
-        <p class="text-gray-400 leading-relaxed">
+        <p class="text-muted-foreground leading-relaxed">
           Actualmente me encuentro abierto a oportunidades laborales y prácticas
           profesionales donde pueda aportar mis conocimientos como desarrollador
           Full Stack.
         </p>
 
-        <p class="text-gray-400 leading-relaxed mt-4">
+        <p class="text-muted-foreground leading-relaxed mt-4">
           Si tienes una vacante o propuesta no dudes en contactarme. Estaré
           encantado de responder.
         </p>
-        <!-- poner mi corro aqui -->
-        <span>Correo de contacto:</span>
-        <a
-          href="mailto:jhoyervegaguarachi@gmail.com"
-          class="text-blue-400 hover:underline">jhoyervegaguarachi@gmail.com</a
-        >
       </div>
 
       <!-- formulario de contacto -->
-      <form id="contactForm" class="space-y-4 max-w-xl lg:w-xl">
+      <form
+        id="contactForm"
+        class="space-y-4 max-w-xl lg:w-xl text-md font-sans"
+      >
         <div
-          class="flex items-center justify-center gap-2 bg-black/30 py-1 px-4 border border-gray-500"
+          class="flex items-center justify-center gap-2 bg-card py-1 px-4 border border-input"
         >
           <label for="name">Nombre:</label>
           <input
@@ -39,12 +40,12 @@
             name="name"
             placeholder="Tu nombre"
             required
-            class="w-full p-3 rounded-lg text-white placeholder-gray-400 outline-none"
+            class="w-full p-3 rounded-lg text-card-foreground outline-none"
           />
         </div>
 
         <div
-          class="flex items-center justify-center gap-2 bg-black/30 py-1 px-4 border border-gray-500"
+          class="flex items-center justify-center gap-2 bg-card py-1 px-4 border border-input"
         >
           <label for="email">Correo:</label>
           <input
@@ -52,51 +53,57 @@
             name="email"
             placeholder="Tu correo"
             required
-            class="w-full p-3 rounded-lg text-whit placeholder-gray-400 outline-none"
+            class="w-full p-3 rounded-lg text-card-foreground outline-none"
           />
         </div>
-        <div
-          class="flex flex-col gap-2 bg-black/30 py-3 px-4 border border-gray-500"
-        >
+        <div class="flex flex-col gap-2 bg-card py-3 px-4 border border-input">
           <label for="message" class="text-start">Mensaje:</label>
           <textarea
             name="message"
             placeholder="Tu mensaje"
             rows="7"
             required
-            class="w-full p-1 rounded-lg text-white placeholder-gray-400 outline-none resize-none row-end-5"
+            class="w-full p-1 rounded-lg text-card-foreground outline-none resize-none row-end-5"
           ></textarea>
         </div>
         <button
           type="submit"
-          class="w-full bg-black hover:bg-black/40 text-white font-semibold py-3 rounded-lg transition cursor-pointer border border-gray-500 hover:scale-102 duration-300"
+          class="w-full bg-black hover:bg-black/40 text-white font-semibold font-hero py-3 rounded-lg transition cursor-pointer border border-input hover:scale-102 duration-300"
         >
           Enviar
         </button>
-        <p id="status" class="hidden text-green-200 text-sm">
-          Mensaje enviado!
-        </p>
       </form>
+    </div>
+  </div>
+  <div
+    id="statusContainer"
+    class="status hidden fixed z-9999 bottom-5 mx-auto w-auto sm:right-10 sm:left-auto sm:mx-0 bg-foreground rounded-lg px-6 py-4 shadow-lg animate-slide-in text-center"
+  >
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 shrink-0">
+        <Successfull />
+      </div>
+      <p id="status" class="text-background text-base font-medium">
+        ¡Mensaje enviado correctamente!
+      </p>
     </div>
   </div>
 </section>
 
-<!-- service_4675xmw-->
-
 <script>
   import emailjs from "@emailjs/browser";
 
-  //Obtenemos los elementos y le decimos a TypeScript qué son exactamente
   const form = document.getElementById("contactForm") as HTMLFormElement;
-  const status = document.getElementById("status") as HTMLElement;
+  const statusContainer = document.getElementById(
+    "statusContainer",
+  ) as HTMLElement;
 
-  if (form && status) {
+  if (form && statusContainer) {
     emailjs.init("ZHiOpLHFKZtmb7EIJ");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // Opcional: Mostrar "Enviando..."
       const btn = form.querySelector("button");
       if (btn) {
         btn.innerText = "Enviando...";
@@ -106,22 +113,50 @@
       emailjs
         .sendForm("service_4675xmw", "template_v3ew4zh", form)
         .then(() => {
-          // Éxito
-          status.classList.remove("hidden");
-          form.reset(); // Ahora sí funciona porque le dijimos que es un HTMLFormElement
-          if (btn) btn.innerText = "Enviar";
+          // Éxito - Mostrar notificación
+          statusContainer.classList.remove("hidden");
+          statusContainer.classList.add("flex");
 
-          // Ocultar mensaje de éxito después de 5 segundos
+          form.reset();
+
+          if (btn) {
+            btn.innerText = "Enviar";
+            btn.disabled = false;
+          }
+
+          // Ocultar mensaje después de 4 segundos
           setTimeout(() => {
-            status.classList.add("hidden");
-          }, 5000);
+            statusContainer.classList.add("hidden");
+            statusContainer.classList.remove("flex");
+          }, 4000);
         })
         .catch((error) => {
-          // Error
           console.error("Error:", error);
-          alert("Error al enviar el mensaje");
-          if (btn) btn.innerText = "Enviar";
+          alert("Error al enviar el mensaje. Por favor, intenta nuevamente.");
+
+          if (btn) {
+            btn.innerText = "Enviar";
+            btn.disabled = false;
+          }
         });
     });
   }
 </script>
+
+<!-- Opcional: Agregar animación de entrada -->
+<style>
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out;
+  }
+</style>

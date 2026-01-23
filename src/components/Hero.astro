@@ -7,7 +7,7 @@ import Download from "../components/icons/Download.astro";
 <section id="inicio" class="h-screen relative">
   <!-- contenido hero -->
   <div
-    class="min-h-screen flex items-center bg-neutral-900 text-white px-8
+    class="min-h-screen flex items-center px-8
   md:pb-0
   sm:px-15 sm:items-center
   lg:px-30"
@@ -15,7 +15,7 @@ import Download from "../components/icons/Download.astro";
     <div class="z-20">
       <!-- Nombre -->
       <p
-        class="font-hero font-light text-3xl tracking-widest uppercase animate-fade-up animate-infinite animate-duration-[3000ms] animate-delay-[1ms]
+        class="text-foreground font-hero font-light text-3xl tracking-widest uppercase animate-fade-up animate-infinite
       md:text-4xl"
       >
         Jhoyer
@@ -23,34 +23,58 @@ import Download from "../components/icons/Download.astro";
 
       <!-- Apellido -->
       <h1
-        class="font-hero font-extrabold text-5xl sm:text-6xl md:text-8xl leading-none uppercase"
+        class="text-foreground font-hero font-extrabold text-5xl sm:text-6xl md:text-8xl leading-none uppercase"
       >
         Vega G.
       </h1>
 
       <!-- Profesión -->
       <p
-        class="font-hero font-light text-sm tracking-[0.35em] mt-4 uppercase
+        class="text-foreground font-hero font-light text-sm tracking-[0.35em] mt-4 uppercase
         md:text-base"
       >
         Desarrollador Web Full Stack
       </p>
 
       <!-- Botones -->
-      <div class="flex gap-4 mt-8
-      sm:gap-10">
+      <div class="flex gap-4 mt-8 items-center justify-start
+      sm:gap-12">
         <a
           href="#about"
-          class="px-6 py-2 border border-white/60 rounded-full text-sm font-medium font-sans hover:bg-white hover:text-black transition cursor-pointer hover:scale-110 duration-300"
+          class="px-6 py-2 border border-border rounded-full text-sm font-medium font-sans transition cursor-pointer hover:scale-110 duration-300
+          bg-foreground text-background
+          md:text-base"
         >
           Sobre Mí
         </a>
         <a
           href="#projects"
-          class="px-6 py-2 border border-white/60 rounded-full text-sm font-medium fron-sans bg-white text-black hover:bg-black hover:text-white transition cursor-pointer hover:scale-110 duration-300"
+          class="px-6 py-2 border rounded-full text-sm font-medium font-sans transition cursor-pointer hover:scale-110 duration-300
+          bg-linear-to-br from-accent to-secondary hover:bg-linear-to-bl text-background-foreground
+          md:text-base"
         >
           Proyectos
         </a>
+        <!-- boton download cv -->
+        <div
+          class="bg-btn-cv text-btn-cv-foreground rounded-full w-20 h-10 hover:scale-110 duration-300
+           sm:w-24 sm:h-12
+           md:w-24 md:h-14
+           absolute top-5 right-5 z-10
+           md:static"
+        >
+          <a
+            href="/JhoyerVegaGuarachi-cv.pdf"
+            download="JhoyerVegaGuarachi-cv.pdf"
+            class="flex gap-2 items-center justify-center h-full w-full"
+            area-label="Download CV"
+          >
+            <div class="size-5 animate-bounce mt-1">
+              <Download />
+            </div>
+            <p class="text-sm my-auto">CV</p>
+          </a>
+        </div>
       </div>
     </div>
     <!-- links a linkedin y github -->
@@ -72,7 +96,7 @@ import Download from "../components/icons/Download.astro";
         >
       </div>
       <div
-        class="bg-black mt-8 rounded-full w-10 h-10 hover:scale-110 transition-transform duration-300
+        class="mt-8 rounded-full w-10 h-10 hover:scale-110 transition-transform duration-300
            sm:w-12 sm:h-12
            md:w-14 md:h-14"
       >
@@ -83,43 +107,37 @@ import Download from "../components/icons/Download.astro";
           class="hover:scale-3d"><GitHub /></a
         >
       </div>
-      <!-- boton download cv -->
-      <div
-        class="bg-blue-600 mt-8 rounded-full w-20 h-10 hover:scale-110 transition-transform duration-300
-           sm:w-24 sm:h-12
-           md:w-24 md:h-14
-           lg:absolute lg:top-8 lg:right-0"
-      >
-        <a
-          href="/cv.pdf"
-          download="cv.pdf"
-          class="flex gap-2 items-center justify-center h-full w-full"
-          area-label="Download CV"
-        >
-          <div class="size-5 animate-bounce mt-1">
-            <Download class="animate-bounce" />
-          </div>
-          <p class="text-white text-sm my-auto">CV</p>
-        </a>
-      </div>
     </div>
   </div>
-
   <!-- fondo hero -->
-  <div class="hidden absolute inset-0 md:block">
+  <div class="hidden absolute inset-0 md:block z-0">
     <img
       src="/assets/images/fondos/fondodesktop.webp"
-      alt=""
-      class="w-full h-full object-cover contrast-90 brightness-50"
+      alt="imagen de fondo hero desktop dark mode"
+      class="hero-dark hidden w-full h-full object-cover contrast-90 brightness-50"
+      loading="eager"
+      decoding="async"
+    />
+    <img
+      src="/assets/images/fondos/heroLigthDesktop.webp"
+      alt="imagen de fondo hero desktop light mode"
+      class="hero-light w-full h-full object-cover"
       loading="eager"
       decoding="async"
     />
   </div>
-  <div class="absolute inset-0 md:hidden">
+  <div class="absolute inset-0 md:hidden z-0">
     <img
       src="/assets/images/fondos/fondoMobile.webp"
-      alt=""
-      class="w-full h-full object-cover contrast-90 brightness-50"
+      alt="imagen de fondo hero mobile dark mode"
+      class="hero-dark hidden w-full h-full object-cover"
+      loading="eager"
+      decoding="async"
+    />
+    <img
+      src="/assets/images/fondos/heroLigthMobile.webp"
+      alt="imagen de fondo hero mobile ligth mode"
+      class="hero-light w-full h-full object-cover"
       loading="eager"
       decoding="async"
     />

@@ -78,26 +78,26 @@ const projects: Project[] = [
     title: "Sistema de Gestión de Edificios",
     tecnologies: ["Node.js", "Express", "React", "MySQL", "Git", "GitHub"],
     descripcion:
-      "Sistema web integral para la administración de edificios, que permite gestionar residentes, personal, áreas comunes, pagos y facturación. Incluye autenticación segura con control de roles y 2FA, módulo de reservas con validación de horarios, pagos mediante QR y generación automática de facturas. El sistema cuenta con un dashboard con métricas clave sobre el estado financiero y operativo del edificio, además de gestión de anuncios y comunicación interna según el rol del usuario.",
+      "Sistema web integral para la administración de edificios que permite gestionar residentes, personal, áreas comunes, pagos y facturación. Incluye autenticación segura con control de roles y 2FA, un módulo de reservas con validación de horarios, pagos mediante QR y generación automática de facturas. El sistema cuenta con un dashboard con métricas clave sobre el estado financiero y operativo del edificio, además de gestión de anuncios y comunicación interna según el rol del usuario.",
     images: imagesp1,
     features: [
       "Modelado de datos complejo",
       "Control de roles y permisos",
-      "Lógica de negocio real (pagos, reservas, facturación)",
+      "Lógica de negocio real (pagos, reservas y facturación)",
       "Dashboards y métricas",
     ],
     urlRepo: "https://github.com/jhoyer123/GestionEdificio.git",
   },
   {
-    title: "Sistema de inventario con punto de venta",
+    title: "Sistema de inventario multisucursal con punto de venta",
     tecnologies: ["React", "Supabase", "Git", "GitHub"],
     descripcion:
-      "Sistema desarrollado con arquitectura de datos robusta para gestionar productos y ventas de manera eficiente. Incluye funcionalidades como control de stock, generación de recibos de venta, y reportes detallados de ventas e inventario. La interfaz es intuitiva y fácil de usar, facilitando la operación diaria del negocio ademas el sistema es multisucrsal con informacion especifica o global gestion de usuarios y roles moviemietnos de transferencia entre sucrusaels stock productos por sucursal dashboard con metricas de ventas y deudas pendientes diarios y mesual cuenta con un pos intuitivo el manejo de usuarios es para empleados direferenciados por roles.",
+      "Sistema desarrollado con una arquitectura de datos robusta para gestionar productos y ventas de manera eficiente. Incluye funcionalidades como control de stock, generación de recibos de venta y reportes detallados de ventas e inventario. El sistema es multisucursal, permitiendo la gestión de información específica o global, administración de usuarios y roles, y movimientos de entrada, salida y transferencia de stock entre sucursales. Además, cuenta con dashboards con métricas de ventas y deudas pendientes (diarias y mensuales), así como un sistema POS intuitivo orientado al uso por empleados según su rol.",
     images: imagesp2,
     features: [
       "Arquitectura de datos sólida",
-      "Manejo de inventario multi-sucursal",
-      "Sistemas POS reales",
+      "Manejo de inventario multisucursal",
+      "Sistema POS real",
       "Reportes y dashboards",
     ],
     urlRepo: "https://github.com/jhoyer123/ventas-dashboard.git",
@@ -105,13 +105,13 @@ const projects: Project[] = [
 ];
 ---
 
-<section id="projects" class="py-15 px-4 bg-slate-950 text-gray-200">
+<section id="projects" class="py-15 px-4 bg-background-view">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-16">
       <h2
-        class="inline-block font-hero text-3xl font-bold border-b-4 border-blue-500 pb-2 text-white"
+        class="text-foreground inline-block font-hero text-3xl font-bold border-b-4 border-card-accent pb-2"
       >
-        Proyectos Académicos
+        Proyectos
       </h2>
     </div>
     <Content projects={projects} />

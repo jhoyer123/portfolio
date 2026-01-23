@@ -5,6 +5,8 @@ import ProjectsIcon from "./icons/ProjectsIcon.astro";
 import ContactIcon from "./icons/Contact.astro";
 import Skills from "./icons/Skills.astro";
 
+import ThemeToggle from "./ui/ThemeToggle.astro";
+
 const links = [
   { href: "/", label: "Inicio", icon: HomeIcon },
   { href: "#about", label: "Sobre mí", icon: AbautIcon },
@@ -51,22 +53,26 @@ const links = [
 </button>
 
 <!-- SIDEBAR -->
-<aside
+<nav
   id="sidebar"
-  class="/* --- ESTADO MÓVIL (Oculto por defecto con transform) --- */
-    fixed top-0 left-0 h-screen w-screen md:hidden/* <-- Ancho y alto definidos */
-    bg-gray-900 p-4
-    -translate-x-full /* <-- Estado inicial: Oculto fuera de pantalla */
+  class="bg-background
+    /* --- ESTADO MÓVIL --- */
+    fixed top-0 left-0 h-screen w-screen
+    p-4 -translate-x-full /* <-- Estado inicial: Oculto fuera de pantalla */
     transform transition-transform duration-300 ease-in-out
     md:transition-none /* <-- Transición */
-    z-50 rounded-r-lg border-2 border-solid border-amber-50
-    /* --- ESTADO DESKTOP (Lo convierte en Navbar horizontal) --- */
+    z-50 rounded-r-lg border-solid border-border
+    /* --- ESTADO DESKTOP --- */
+    md:bg-[hsl(var(--glass))]
+    md:backdrop-blur-[10px]
+    md:border-[hsl(var(--glass-border))]
+    md:shadow-[0_8px_32px_0_rgba(0,0,0,0.1)]
     md:fixed md:translate-x-0 md:h-auto md:w-full
-    md:top-0 md:pt-0 md:pb-0 md:rounded-none md:border-0 md:bg-black"
+    md:top-0 md:pt-0 md:pb-0 md:rounded-none md:border-0"
 >
   <div
-    class="flex flex-col gap-10 h-full my-auto items-center justify-center w-full
-  md:flex-row md:justify-between md:px-10
+    class="flex flex-col gap-10 h-full my-auto items-center justify-center w-full text-foreground
+  md:flex-row md:justify-between sm:px-5
   lg:px-20
   xl:px-60"
   >
@@ -79,21 +85,21 @@ const links = [
     </div>
 
     <div
-      class="md:block md:text-3xl md:text-white md:font-hero md:font-extrabold"
+      class="text-xl font-hero md:block md:text-3xl text-foreground font-extrabold"
     >
       <span>JVG</span>
     </div>
-
+    <!-- navegación items -->
     <ul
-      class="flex flex-col items-center justify-center md:flex-row md:justify-center gap-4 text-gray-300 w-full py-2 md:text-base
+      class="flex flex-col items-center justify-center md:flex-row md:justify-center gap-4 w-full py-2 md:text-base
       md:w-auto md:gap-10 md:py-1
       lg:gap-13"
     >
       {
         links.map((link) => (
           <li
-            class="w-auto min-w-[200px] bg-gray-700/40 py-2 px-8 flex items-center justify-start gap-3 rounded-2xl hover:bg-gray-700 hover:text-white transition
-          md:text-gray-300 md:hover:text-gray-50 md:hover:scale-110 md:bg-black md:min-w-auto md:px-0 md:gap-0 md:hover:bg-transparent  
+            class="w-auto min-w-[200px] py-2 px-8 flex items-center justify-start gap-3 rounded-2xl transition
+         md:hover:scale-110 md:min-w-auto md:px-0 md:gap-0 md:hover:bg-transparent  
           "
           >
             <div class="md:hidden">
@@ -104,7 +110,10 @@ const links = [
         ))
       }
     </ul>
+
+    <!-- toggle theme -->
+    <ThemeToggle />
   </div>
-</aside>
+</nav>
 
 <script src="../scripts/sidebar.js"></script>
