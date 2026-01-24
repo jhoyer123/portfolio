@@ -16,13 +16,13 @@ const { images } = Astro.props;
         <div class="swiper-slide bg-gray-100 rounded-2xl p-2 item-galery">
           <Image
             src={img}
-            quality={100}
+            quality={95}
             alt="Imagen del proyecto"
             loading="lazy"
-            width={1600}
-            height={794}
+            widths={[800, 1200, 1600, 2400]}
             sizes="(max-width: 768px) 100vw, 90vw"
             class="w-full h-full object-contain rounded-2xl"
+            format="webp"
           />
         </div>
       ))
