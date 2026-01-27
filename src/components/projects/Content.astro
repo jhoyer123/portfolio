@@ -35,13 +35,13 @@ import GitHub from "../icons/skills/Github.astro";
             {p.title}
           </h3>
 
-          <p class="text-foreground mb-6 leading-relaxed font-sans">
+          <p class="text-foreground mb-6 leading-relaxed font-sans text-sm md:text-base">
             {p.descripcion}
           </p>
 
           <ul class="space-y-2 mb-6 font-sans text-foreground">
             {p.features?.map((feature) => (
-              <li class="flex items-center text-sm">
+              <li class="flex items-center text-sm md:text-base">
                 <span class="mr-2 text-card-accent">▹</span> {feature}
               </li>
             ))}
@@ -55,7 +55,7 @@ import GitHub from "../icons/skills/Github.astro";
               rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-5 px-4 py-2.5 rounded-xl 
            bg-gray-900 border border-border
-           text-white text-sm font-medium font-sans
+           text-white text-sm md:text-base font-medium font-sans
            hover:border-card-accent hover:scale-105
            transition-all duration-300 shadow-lg shadow-card-accent/30"
             >
@@ -73,7 +73,7 @@ import GitHub from "../icons/skills/Github.astro";
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl 
              bg-gray-900 border border-border
-           text-white text-sm font-medium font-sans
+           text-white text-sm md:text-base font-medium font-sans
            hover:border-card-accent hover:scale-105
            transition-all duration-300 shadow-lg shadow-card-accent/30"
               >

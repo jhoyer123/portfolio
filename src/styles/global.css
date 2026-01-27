@@ -1,7 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @plugin "@tailwindcss/typography";
 
 @import "tailwindcss";
+
+/* Importa solo los pesos que necesites */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@import "@fontsource/montserrat/400.css";
+@import "@fontsource/montserrat/600.css";
+@import "@fontsource/montserrat/700.css";
 
 @theme {
   --font-sans: "Inter", "sans-serif";
@@ -44,7 +53,7 @@
     --foreground: 0 0% 95%;
     --background-view: #212529;
 
-    --card-accent: #606B73;
+    --card-accent: #606b73;
 
     --card: 0 0% 12%;
     --card-foreground: 0 0% 95%;

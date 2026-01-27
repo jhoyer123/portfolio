@@ -7,6 +7,9 @@ import Skills from "./icons/Skills.astro";
 
 import ThemeToggle from "./ui/ThemeToggle.astro";
 
+import { Image } from "astro:assets";
+import profileImage from "../../public/assets/profile/profile.webp";
+
 const links = [
   { href: "/", label: "Inicio", icon: HomeIcon },
   { href: "#about", label: "Sobre mí", icon: AbautIcon },
@@ -77,11 +80,18 @@ const links = [
   xl:px-60"
   >
     <div class="md:hidden">
-      <img
-        src="/assets/profile/profile.webp"
-        alt="imagen de perfil de jhoyer"
-        class="rounded-full h-32"
-      />
+      <div class="md:hidden">
+        <Image
+          src={profileImage}
+          alt="imagen de perfil de jhoyer"
+          width={128}
+          height={128}
+          quality={85}
+          format="webp"
+          loading="lazy"
+          class="rounded-full h-32"
+        />
+      </div>
     </div>
 
     <div

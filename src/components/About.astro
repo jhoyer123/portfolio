@@ -1,3 +1,8 @@
+---
+import { Image } from "astro:assets";
+import profileImage from "../../public/assets/profile/profile.webp";
+---
+
 <section id="about" class="py-15 text-justify bg-background-view">
   <div
     class="px-4 max-w-5xl mx-auto flex flex-col items-center gap-10
@@ -14,11 +19,17 @@
       class="flex flex-col gap-10 items-center justify-center
     lg:flex-row lg:gap-20"
     >
-      <img
-        src="/assets/profile/profile.webp"
+      <Image
+        src={profileImage}
         alt="Foto de Jhoyer"
-        class="w-44 h-44 rounded-full object-cover
-        lg:w-60 lg:h-60"
+        width={240}
+        height={240}
+        widths={[176, 240]}
+        sizes="(min-width: 1024px) 240px, 176px"
+        quality={85}
+        format="webp"
+        loading="lazy"
+        class="w-44 h-44 rounded-full object-cover lg:w-60 lg:h-60"
       />
 
       <div

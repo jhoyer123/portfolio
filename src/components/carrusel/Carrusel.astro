@@ -39,7 +39,7 @@ const { images } = Astro.props;
   <div class="swiper-scrollbar"></div>
 </div>
 
-<script>
+<!-- <script >
   //Importar el Core de Swiper
   import Swiper from "swiper";
 
@@ -83,6 +83,68 @@ const { images } = Astro.props;
         document.body.style.overflow = expanded ? "hidden" : "";
         swiper.update();
       });
+    });
+  });
+</script> -->
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Pagination, Autoplay } from "swiper/modules";
+  import "swiper/css";
+  import "swiper/css/navigation";
+  import "swiper/css/pagination";
+
+  //Obtenemos la lista.
+  const carousels = document.querySelectorAll(".mySwiper");
+
+  carousels.forEach((element) => {
+    //Convertimos 'element' (que es genérico) a 'HTMLElement' (específico)
+    const carouselElement = element as HTMLElement;
+
+    const swiperInstance = new Swiper(carouselElement, {
+      modules: [Navigation, Pagination, Autoplay],
+      spaceBetween: 30,
+      centeredSlides: true,
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: carouselElement.querySelector(".swiper-pagination") as HTMLElement,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: carouselElement.querySelector(
+          ".swiper-button-next",
+        ) as HTMLElement,
+        prevEl: carouselElement.querySelector(
+          ".swiper-button-prev",
+        ) as HTMLElement,
+      },
+    });
+
+    //Lógica del click
+    const imgs = carouselElement.querySelectorAll("img");
+
+    imgs.forEach((img) => {
+      img.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const expanded = carouselElement.classList.toggle("expanded");
+        document.body.style.overflow = expanded ? "hidden" : "";
+        swiperInstance.update();
+      });
+    });
+
+    carouselElement.addEventListener("click", (e) => {
+      if (
+        carouselElement.classList.contains("expanded") &&
+        e.target === carouselElement
+      ) {
+        carouselElement.classList.remove("expanded");
+        document.body.style.overflow = "";
+        swiperInstance.update();
+      }
     });
   });
 </script>
