@@ -1,4 +1,8 @@
 ---
+import Carrusel from "../carrusel/Carrusel.astro";
+import GitHub from "../icons/skills/Github.astro";
+import Laboratory from "../icons/Laboratory.astro";
+
 import type { Project } from "../Projects.astro";
 
 interface Props {
@@ -6,10 +10,6 @@ interface Props {
 }
 
 const { projects } = Astro.props;
-
-/* cosas del swiper */
-import Carrusel from "../carrusel/Carrusel.astro";
-import GitHub from "../icons/skills/Github.astro";
 ---
 
 <div class="flex flex-col gap-20">
@@ -71,12 +71,15 @@ import GitHub from "../icons/skills/Github.astro";
                 href={p.urlDemo}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl 
+                class="inline-flex items-center justify-center gap-5 px-4 py-2.5 rounded-xl
              bg-gray-900 border border-border
            text-white text-sm md:text-base font-medium font-sans
            hover:border-card-accent hover:scale-105
            transition-all duration-300 shadow-lg shadow-card-accent/30"
               >
+                <div class="w-8">
+                  <Laboratory />
+                </div>
                 Ver Demo
               </a>
             )}

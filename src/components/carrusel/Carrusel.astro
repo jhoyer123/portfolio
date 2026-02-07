@@ -10,16 +10,16 @@ const { images } = Astro.props;
 <div
   class="swiper mySwiper w-full lg:h-[450px] sm:h-90 h-50 relative group galery"
 >
-  <div class="swiper-wrapper galery-content">
+  <div class="swiper-wrapper galery-content w-full h-full">
     {
-      images.map((img) => (
+      images.map((img, index) => (
         <div class="swiper-slide bg-gray-100 rounded-2xl p-2 item-galery">
           <Image
             src={img}
             quality={95}
             alt="Imagen del proyecto"
-            loading="lazy"
-            widths={[800, 1200, 1600, 2400]}
+            loading={index === 0 ? "eager" : "lazy"}
+            widths={[800, 1000, 1600, 2000]}
             sizes="(max-width: 768px) 100vw, 90vw"
             class="w-full h-full object-contain rounded-2xl"
             format="webp"
@@ -39,60 +39,9 @@ const { images } = Astro.props;
   <div class="swiper-scrollbar"></div>
 </div>
 
-<!-- <script >
-  //Importar el Core de Swiper
-  import Swiper from "swiper";
-
-  //¡IMPORTANTE! Importar los módulos necesarios
-  import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
-  //Importar los CSS de CADA módulo (si no, los botones salen invisibles o feos)
-  import "swiper/css";
-  import "swiper/css/navigation";
-  import "swiper/css/pagination";
-
-  //Inicializar inyectando los módulos
-  const swiper = new Swiper(".mySwiper", {
-    // Aquí es donde sucede la magia:
-    modules: [Navigation, Pagination, Autoplay],
-
-    spaceBetween: 30,
-    centeredSlides: true,
-    loop: true, // Recomendado para carruseles infinitos
-
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-
-  //expandir galeria en modal al hacer click
-  document.querySelectorAll(".galery").forEach((galeria) => {
-    galeria.querySelectorAll("img").forEach((img) => {
-      img.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const expanded = galeria.classList.toggle("expanded");
-        document.body.style.overflow = expanded ? "hidden" : "";
-        swiper.update();
-      });
-    });
-  });
-</script> -->
-
 <script>
   import Swiper from "swiper";
   import { Navigation, Pagination, Autoplay } from "swiper/modules";
-  import "swiper/css";
-  import "swiper/css/navigation";
-  import "swiper/css/pagination";
 
   //Obtenemos la lista.
   const carousels = document.querySelectorAll(".mySwiper");
@@ -101,11 +50,14 @@ const { images } = Astro.props;
     //Convertimos 'element' (que es genérico) a 'HTMLElement' (específico)
     const carouselElement = element as HTMLElement;
 
+    const slidesCount =
+      carouselElement.querySelectorAll(".swiper-slide").length;
+
     const swiperInstance = new Swiper(carouselElement, {
       modules: [Navigation, Pagination, Autoplay],
       spaceBetween: 30,
       centeredSlides: true,
-      loop: true,
+      loop: slidesCount > 3,
       autoplay: {
         delay: 4000,
         disableOnInteraction: false,
@@ -132,6 +84,7 @@ const { images } = Astro.props;
         e.stopPropagation();
         const expanded = carouselElement.classList.toggle("expanded");
         document.body.style.overflow = expanded ? "hidden" : "";
+        img.style.cursor = expanded ? "zoom-out" : "zoom-in";
         swiperInstance.update();
       });
     });
@@ -143,6 +96,7 @@ const { images } = Astro.props;
       ) {
         carouselElement.classList.remove("expanded");
         document.body.style.overflow = "";
+        imgs.forEach((img) => (img.style.cursor = "zoom-in"));
         swiperInstance.update();
       }
     });
@@ -150,6 +104,10 @@ const { images } = Astro.props;
 </script>
 
 <style>
+  @import "swiper/css";
+  @import "swiper/css/navigation";
+  @import "swiper/css/pagination";
+
   .galery.expanded {
     position: fixed;
     inset: 0;

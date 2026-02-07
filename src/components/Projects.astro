@@ -65,6 +65,13 @@ const imagesp2 = [
   img33,
 ];
 
+//imagenes del proyecto landing page
+import imgld1 from "../../public/assets/images/proyld/imgld1.webp";
+import imgld2 from "../../public/assets/images/proyld/imgld2.webp";
+import imgld3 from "../../public/assets/images/proyld/imgld3.webp";
+
+const imagesp3 = [imgld1, imgld2, imgld3];
+
 export interface Project {
   title: string;
   tecnologies: string[];
@@ -103,6 +110,22 @@ const projects: Project[] = [
       "Reportes y dashboards",
     ],
     urlRepo: "https://github.com/jhoyer123/ventas-dashboard.git",
+    urlDemo: "https://pos-demo-murex-sigma.vercel.app",
+  },
+  {
+    title: "Landing Page - Clinica Dental",
+    tecnologies: ["Astro", "Tailwind CSS", "JavaScript", "CSS"],
+    descripcion:
+      "Landing page moderna y responsive para consultorio dental, enfocada en conversión y experiencia de usuario. Implementa diseño minimalista, optimización de imágenes WebP, animaciones sutiles y formulario de contacto. Alcanza métricas de rendimiento superiores a 95 en PageSpeed Insights.",
+    images: imagesp3,
+    features: [
+      "Diseño responsive y accesible",
+      "Optimización de performance",
+      "SEO optimizado",
+      "Formulario de contacto funcional",
+    ],
+    urlRepo: "https://github.com/jhoyer123/landingPage_dentist/tree/main",
+    urlDemo: "https://landing-page-dentist.vercel.app/",
   },
 ];
 ---
