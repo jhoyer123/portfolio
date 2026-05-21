@@ -2,90 +2,135 @@
 import Successfull from "./icons/contact/Successfull.astro";
 ---
 
-<section id="contact" class="py-15 px-6 bg-background text-center">
-  <div class="flex flex-col items-center justify-center gap-6">
-    <h2
-      class="text-3xl font-bold text-foreground border-b-4 border-card-accent"
-    >
-      Contacto
-    </h2>
-
-    <div
-      class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-10"
-    >
-      <div
-        class="flex flex-col gap-4 items-start justify-start lg:items-center text-sm md:text-base max-w-130 md:px-10"
+<section
+  id="contact"
+  aria-labelledby="contact-title"
+  class="py-24 md:py-36 bg-background px-6 sm:px-12 lg:px-8"
+>
+  <div
+    class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center"
+  >
+    <div class="w-full lg:w-5/12 flex flex-col justify-center">
+      <h2
+        id="contact-title"
+        class="text-foreground/90 font-sans text-[10px] tracking-[0.4em] uppercase mb-12 md:mb-20"
       >
-        <p class="text-muted-foreground leading-relaxed">
+        / Contacto
+      </h2>
+
+      <h3
+        class="font-sans font-medium text-foreground text-3xl md:text-5xl tracking-tight leading-tight mb-8"
+      >
+        ¿Construimos algo increíble?
+      </h3>
+
+      <div
+        class="flex flex-col gap-5 text-foreground/80 font-sans text-base leading-relaxed"
+      >
+        <p>
           Actualmente me encuentro disponible para integrarme a equipos de
           desarrollo donde pueda aportar en la construcción de aplicaciones web
           escalables y bien estructuradas.
         </p>
 
-        <p class="text-muted-foreground leading-relaxed mt-4">
+        <p>
           Si buscas un desarrollador comprometido, orientado a resultados y con
           bases sólidas en desarrollo Full Stack, estaré encantado de conversar.
         </p>
       </div>
+    </div>
 
-      <!-- formulario de contacto -->
+    <div class="w-full lg:w-7/12">
       <form
         id="contactForm"
-        class="space-y-4 max-w-xl lg:w-xl text-md font-sans"
+        aria-label="Formulario de contacto"
+        class="flex flex-col gap-5 bg-card/5 border border-border/60 p-6 sm:p-10 rounded-2xl"
       >
-        <div
-          class="flex items-center justify-center gap-2 bg-card py-1 px-4 border border-input"
-        >
-          <label for="name">Nombre:</label>
+        <div class="flex flex-col gap-2">
+          <label
+            for="name"
+            class="text-foreground/60 font-sans text-[11px] tracking-[0.2em] uppercase pl-1"
+          >
+            Nombre
+          </label>
+
           <input
+            id="name"
             type="text"
             name="name"
+            autocomplete="name"
             placeholder="Tu nombre"
             required
-            class="w-full p-3 rounded-lg text-card-foreground outline-none"
+            aria-required="true"
+            class="w-full px-4 py-3.5 bg-background border border-border/50 rounded-xl text-foreground font-sans text-sm outline-none focus:border-foreground/40 focus:ring-2 focus:ring-foreground/20 transition-all duration-300 placeholder:text-foreground/30"
           />
         </div>
 
-        <div
-          class="flex items-center justify-center gap-2 bg-card py-1 px-4 border border-input"
-        >
-          <label for="email">Correo:</label>
+        <div class="flex flex-col gap-2">
+          <label
+            for="email"
+            class="text-foreground/60 font-sans text-[11px] tracking-[0.2em] uppercase pl-1"
+          >
+            Correo electrónico
+          </label>
+
           <input
+            id="email"
             type="email"
             name="email"
-            placeholder="Tu correo"
+            autocomplete="email"
+            inputmode="email"
+            placeholder="tu@correo.com"
             required
-            class="w-full p-3 rounded-lg text-card-foreground outline-none"
+            aria-required="true"
+            class="w-full px-4 py-3.5 bg-background border border-border/50 rounded-xl text-foreground font-sans text-sm outline-none focus:border-foreground/40 focus:ring-2 focus:ring-foreground/20 transition-all duration-300 placeholder:text-foreground/30"
           />
         </div>
-        <div class="flex flex-col gap-2 bg-card py-3 px-4 border border-input">
-          <label for="message" class="text-start">Mensaje:</label>
+
+        <div class="flex flex-col gap-2">
+          <label
+            for="message"
+            class="text-foreground/60 font-sans text-[11px] tracking-[0.2em] uppercase pl-1"
+          >
+            Mensaje
+          </label>
+
           <textarea
+            id="message"
             name="message"
-            placeholder="Tu mensaje"
-            rows="7"
+            placeholder="¿En qué te puedo ayudar?"
+            rows="5"
             required
-            class="w-full p-1 rounded-lg text-card-foreground outline-none resize-none row-end-5"
+            aria-required="true"
+            class="w-full px-4 py-3.5 bg-background border border-border/50 rounded-xl text-foreground font-sans text-sm outline-none resize-none focus:border-foreground/40 focus:ring-2 focus:ring-foreground/20 transition-all duration-300 placeholder:text-foreground/30"
           ></textarea>
         </div>
+
         <button
           type="submit"
-          class="w-full bg-black hover:bg-black/40 text-white font-semibold font-hero py-3 rounded-lg transition cursor-pointer border border-input hover:scale-102 duration-300"
+          aria-label="Enviar formulario de contacto"
+          class="mt-2 w-full bg-foreground text-background hover:scale-[1.02] hover:shadow-lg font-medium font-sans py-4 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          Enviar
+          Enviar mensaje
         </button>
       </form>
     </div>
   </div>
+
+  <!-- Status -->
   <div
     id="statusContainer"
-    class="status hidden fixed z-9999 bottom-5 mx-auto w-auto sm:right-10 sm:left-auto sm:mx-0 bg-foreground rounded-lg px-6 py-4 shadow-lg animate-slide-in text-center"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    class="status hidden fixed z-9999 bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-10 bg-foreground text-background border border-border/20 rounded-xl px-6 py-4 shadow-2xl animate-slide-in items-center"
   >
     <div class="flex items-center gap-3">
-      <div class="w-8 h-8 shrink-0">
+      <div class="w-6 h-6 shrink-0 text-background" aria-hidden="true">
         <Successfull />
       </div>
-      <p id="status" class="text-background text-base font-medium">
+
+      <p id="status" class="text-sm font-medium font-sans">
         ¡Mensaje enviado correctamente!
       </p>
     </div>
@@ -107,26 +152,27 @@ import Successfull from "./icons/contact/Successfull.astro";
       e.preventDefault();
 
       const btn = form.querySelector("button");
+
       if (btn) {
         btn.innerText = "Enviando...";
+        btn.setAttribute("aria-busy", "true");
         btn.disabled = true;
       }
 
       emailjs
         .sendForm("service_4675xmw", "template_v3ew4zh", form)
         .then(() => {
-          // Éxito - Mostrar notificación
           statusContainer.classList.remove("hidden");
           statusContainer.classList.add("flex");
 
           form.reset();
 
           if (btn) {
-            btn.innerText = "Enviar";
+            btn.innerText = "Enviar mensaje";
+            btn.removeAttribute("aria-busy");
             btn.disabled = false;
           }
 
-          // Ocultar mensaje después de 4 segundos
           setTimeout(() => {
             statusContainer.classList.add("hidden");
             statusContainer.classList.remove("flex");
@@ -134,10 +180,12 @@ import Successfull from "./icons/contact/Successfull.astro";
         })
         .catch((error) => {
           console.error("Error:", error);
+
           alert("Error al enviar el mensaje. Por favor, intenta nuevamente.");
 
           if (btn) {
-            btn.innerText = "Enviar";
+            btn.innerText = "Enviar mensaje";
+            btn.removeAttribute("aria-busy");
             btn.disabled = false;
           }
         });
@@ -145,20 +193,46 @@ import Successfull from "./icons/contact/Successfull.astro";
   }
 </script>
 
-<!-- Opcional: Agregar animación de entrada -->
 <style>
   @keyframes slide-in {
     from {
       transform: translateX(100%);
       opacity: 0;
     }
+
     to {
       transform: translateX(0);
       opacity: 1;
     }
   }
 
-  .animate-slide-in {
-    animation: slide-in 0.3s ease-out;
+  @media (max-width: 640px) {
+    @keyframes slide-in-bottom {
+      from {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
+    }
+
+    .animate-slide-in {
+      animation: slide-in-bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+
+  @media (min-width: 641px) {
+    .animate-slide-in {
+      animation: slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-slide-in {
+      animation: none;
+    }
   }
 </style>

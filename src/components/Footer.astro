@@ -3,31 +3,47 @@ import GitHub from "../components/icons/skills/Github.astro";
 import LinkedIn from "../components/icons/skills/Linkedin.astro";
 ---
 
-<footer class="bg-background-view py-8 text-center font-sans">
-  <div class="px-10">
-    <!-- links a linkedin y github -->
-    <div class="flex gap-20 items-center justify-center mb-8">
-      <div
-        class="bg-card rounded-full w-10 h-10 hover:scale-105 transition duration-300"
-      >
-        <a
-          target="_blank"
-          href="https://github.com/jhoyer123"
-          aria-label="GitHub link"><GitHub /></a
-        >
-      </div>
-      <div
-        class="w-10 h-10 text-[#007EBB] hover:scale-105 transition duration-300"
-      >
-        <a
-          target="_blank"
-          href="https://www.linkedin.com/in/jhoyer-vega-guarachi-431b24342/"
-          aria-label="LinkedIn link"><LinkedIn /></a
-        >
-      </div>
-    </div>
-    <p class="text-sm text-muted-foreground">
-      © 2025 JHOYER VEGA GUARACHI. Todos los derechos reservados.
+<footer
+  role="contentinfo"
+  class="py-8 md:py-10 bg-background border-t border-border/20"
+>
+  <div
+    class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6"
+  >
+    <p
+      class="text-foreground/50 font-sans text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-center md:text-left"
+    >
+      © 2026 Jhoyer Vega G. Todos los derechos reservados.
     </p>
+
+    <nav aria-label="Redes sociales" class="flex items-center gap-6">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/jhoyer123"
+        aria-label="Visitar perfil de GitHub"
+        class="w-5 h-5 text-foreground/50 hover:text-foreground transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white rounded-sm"
+      >
+        <span class="sr-only">GitHub</span>
+
+        <div aria-hidden="true">
+          <GitHub />
+        </div>
+      </a>
+
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/jhoyer-vega-guarachi-431b24342/"
+        aria-label="Visitar perfil de LinkedIn"
+        class="w-5 h-5 text-foreground/50 hover:text-foreground transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white rounded-sm"
+      >
+        <span class="sr-only">LinkedIn</span>
+
+        <div aria-hidden="true">
+          <LinkedIn />
+        </div>
+      </a>
+    </nav>
   </div>
 </footer>

@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
-/* import components */
+
+// Components
 import Aside from "../components/Aside.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
@@ -9,33 +10,87 @@ import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 import Skills from "../components/Skills.astro";
 
+// Fonts
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/700.css";
 ---
 
-<html lang="en">
+<html lang="es">
   <head>
+    <!-- Basic -->
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>Jhoyer Vega | Full Stack Developer</title>
+
     <meta
       name="description"
-      content="Full Stack Developer especializado en aplicaciones web modernas, rendimiento y buenas prácticas. Portfolio con proyectos reales y tecnologías actuales."
+      content="Portfolio de Jhoyer Vega, Full Stack Developer especializado en aplicaciones web modernas, rendimiento, accesibilidad y buenas prácticas."
     />
-    <title>portafolio - JVG</title>
+
+    <meta
+      name="keywords"
+      content="Full Stack Developer, Frontend Developer, Backend Developer, Astro, React, Next.js, TypeScript, Portfolio, Web Developer"
+    />
+
+    <meta name="author" content="Jhoyer Vega" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://jhoyerdev.me/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Jhoyer Vega | Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Portfolio con proyectos, tecnologías y experiencia en desarrollo web moderno."
+    />
+    <meta property="og:image" content="/preview.webp" />
+    <meta property="og:url" content="https://jhoyerdev.me/" />
+    <meta property="og:site_name" content="Jhoyer Vega Portfolio" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jhoyer Vega | Full Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Portfolio con proyectos y experiencia en desarrollo web moderno."
+    />
+    <meta name="twitter:image" content="/preview.webp" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0f172a" />
   </head>
-  <body class="bg-slate-900 m-0 p-0">
+
+  <body class="bg-slate-900 m-0 p-0 text-white antialiased">
+    <!-- Skip navigation -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded-md"
+    >
+      Saltar al contenido principal
+    </a>
+
+    <!-- Sidebar -->
     <Aside />
+
+    <!-- Main content -->
     <main
+      id="main-content"
       class="bg-linear-to-bl from-slate-900 to-slate-700 min-h-screen transition-all duration-300"
     >
       <Hero />
       <About />
-      <Skills />
       <Projects />
+      <Skills />
       <Contact />
       <Footer />
     </main>

@@ -3,55 +3,177 @@ import { Image } from "astro:assets";
 import profileImage from "../../public/assets/profile/profile.webp";
 ---
 
-<section id="about" class="py-15 text-justify bg-background-view">
-  <div
-    class="px-4 max-w-5xl mx-auto flex flex-col items-center gap-10
-  md:px-15 md:max-w-full
-  lg:px-0"
-  >
+<section
+  id="about"
+  aria-labelledby="about-title"
+  class="py-16 md:py-28 bg-background"
+>
+  <div class="px-6 mx-auto max-w-6xl sm:px-12 lg:px-8">
     <h2
-      class="text-foreground font-bold font-hero text-3xl border-b-4 border-b-card-accent"
+      id="about-title"
+      class="text-foreground/90 font-sans text-[10px] tracking-[0.4em] uppercase mb-12 md:mb-20"
     >
-      Sobre mí
+      / Sobre mí
     </h2>
 
-    <div
-      class="flex flex-col gap-10 items-center justify-center
-    lg:flex-row lg:gap-20"
-    >
-      <Image
-        src={profileImage}
-        alt="Foto de Jhoyer"
-        width={240}
-        height={240}
-        widths={[176, 240]}
-        sizes="(min-width: 1024px) 240px, 176px"
-        quality={85}
-        format="webp"
-        loading="lazy"
-        class="w-44 h-44 rounded-full object-cover lg:w-60 lg:h-60"
-      />
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Imagen -->
+      <div class="lg:col-span-5 about-img">
+        <div class="relative w-full aspect-3/4 overflow-hidden">
+          <Image
+            src={profileImage}
+            alt="Fotografía de Jhoyer Vega"
+            width={480}
+            height={640}
+            quality={90}
+            format="webp"
+            loading="lazy"
+            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+          />
 
-      <div
-        class="font-sans prose prose-stone prose-sm text-foreground md:prose-base"
-      >
-        <p>
-          Desarrollador Full Stack con formación en Informática (UMSA),
-          especializado en la construcción de aplicaciones web escalables y
-          orientadas a negocio.
-        </p>
+          <div
+            class="absolute -bottom-2.5 -right-2.5 w-full h-full border border-foreground/10 -z-10 pointer-events-none"
+            aria-hidden="true"
+          >
+          </div>
+        </div>
 
-        <p>
-          He desarrollado sistemas de gestión completos utilizando React y
-          Node.js, implementando arquitecturas sólidas, bases de datos
-          estructuradas y APIs bien definidas.
-        </p>
+        <!-- Meta datos -->
+        <div class="mt-6 flex flex-col">
+          <div
+            class="flex items-center justify-between py-2.5 border-b border-border"
+          >
+            <span
+              class="text-foreground/45 font-sans text-[10px] tracking-[0.2em] uppercase"
+            >
+              Disponible
+            </span>
 
-        <p>
-          Me enfoco en escribir código limpio, soluciones mantenibles y
-          experiencias web eficientes tanto para usuarios como para equipos.
-        </p>
+            <span class="text-foreground font-sans text-[11px] font-medium">
+              Sí
+            </span>
+          </div>
+
+          <div
+            class="flex items-center justify-between py-2.5 border-b border-border"
+          >
+            <span
+              class="text-foreground/45 font-sans text-[10px] tracking-[0.2em] uppercase"
+            >
+              Ubicación
+            </span>
+
+            <span class="text-foreground font-sans text-[11px] font-medium">
+              Bolivia
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texto -->
+      <div class="lg:col-span-7 flex flex-col gap-8 about-text pt-1">
+        <div
+          class="flex flex-col gap-4 font-sans text-foreground/70 text-[15px] leading-[1.8] font-light"
+        >
+          <p>
+            Desarrollador Full Stack con formación en Informática (UMSA),
+            especializado en la construcción de aplicaciones web escalables y
+            orientadas a los objetivos del negocio.
+          </p>
+
+          <p>
+            He desarrollado sistemas de gestión integrales utilizando React y
+            Node.js, implementando arquitecturas sólidas, bases de datos
+            estructuradas y APIs bien definidas. Me enfoco en escribir código
+            limpio y diseñar soluciones mantenibles que se traduzcan en
+            experiencias web rápidas y eficientes, tanto para los usuarios
+            finales como para los equipos de trabajo.
+          </p>
+
+          <p>
+            Mantengo un fuerte compromiso con el aprendizaje continuo, siempre
+            dispuesto a mejorar cada día para aportar valor real y adaptarme a
+            las necesidades de cada proyecto.
+          </p>
+        </div>
+
+        <a
+          href="#projects"
+          aria-label="Ir a la sección de proyectos"
+          class="inline-flex items-center gap-3 text-foreground
+          font-sans text-[11px] font-medium uppercase tracking-[0.2em]
+          border-b border-foreground/25 pb-1 w-fit hover:border-foreground
+          transition-colors duration-200 group
+          focus:outline-none focus:ring-2 focus:ring-white rounded-sm"
+        >
+          Ver proyectos
+
+          <svg
+            class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
       </div>
     </div>
   </div>
+
+  <style>
+    .about-img,
+    .about-text {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .about-img.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.15s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .about-img,
+      .about-text,
+      .about-img.visible,
+      .about-text.visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+
+    document
+      .querySelectorAll(".about-img, .about-text")
+      .forEach((el) => observer.observe(el));
+  </script>
 </section>

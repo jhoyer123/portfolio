@@ -17,6 +17,7 @@ import img13 from "../../public/assets/images/proyge/pge13.webp";
 import img15 from "../../public/assets/images/proyge/pge15.webp";
 import img16 from "../../public/assets/images/proyge/pge16.webp";
 import img17 from "../../public/assets/images/proyge/pge17.webp";
+
 const imagesp1 = [
   img1,
   img2,
@@ -49,6 +50,7 @@ import img30 from "../../public/assets/images/proysv/psv10.webp";
 import img31 from "../../public/assets/images/proysv/psv11.webp";
 import img32 from "../../public/assets/images/proysv/psv12.webp";
 import img33 from "../../public/assets/images/proysv/psv13.webp";
+
 const imagesp2 = [
   img21,
   img23,
@@ -113,7 +115,7 @@ const projects: Project[] = [
     urlDemo: "https://pos-demo-murex-sigma.vercel.app",
   },
   {
-    title: "Landing Page - Clinica Dental",
+    title: "Landing Page - Clínica Dental",
     tecnologies: ["Astro", "Tailwind CSS", "JavaScript", "CSS"],
     descripcion:
       "Landing page moderna y responsive para consultorio dental, enfocada en conversión y experiencia de usuario. Implementa diseño minimalista, optimización de imágenes WebP, animaciones sutiles y formulario de contacto. Alcanza métricas de rendimiento superiores a 95 en PageSpeed Insights.",
@@ -130,15 +132,19 @@ const projects: Project[] = [
 ];
 ---
 
-<section id="projects" class="py-15 px-4 bg-background-view">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <h2
-        class="text-foreground inline-block font-hero text-3xl font-bold border-b-4 border-card-accent pb-2"
-      >
-        Proyectos
-      </h2>
-    </div>
+<section
+  id="projects"
+  aria-labelledby="projects-title"
+  class="py-15 px-4 bg-background"
+>
+  <div class="max-w-6xl mx-auto">
+    <h2
+      id="projects-title"
+      class="text-foreground/90 font-sans text-[10px] tracking-[0.4em] uppercase mb-12 md:mb-20"
+    >
+      / Proyectos
+    </h2>
+
     <Content projects={projects} />
   </div>
 </section>

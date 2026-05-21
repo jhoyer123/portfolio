@@ -4,140 +4,157 @@ import Linkedin from "../components/icons/skills/Linkedin.astro";
 import Download from "../components/icons/Download.astro";
 ---
 
-<section id="inicio" class="h-screen relative">
-  <!-- contenido hero -->
+<section
+  id="inicio"
+  aria-labelledby="hero-title"
+  class="h-screen relative flex flex-col items-center justify-center overflow-hidden bg-background"
+>
   <div
-    class="min-h-screen flex items-center px-8
-  md:pb-0
-  sm:px-15 sm:items-center
-  lg:px-30"
+    class="relative z-20 flex flex-col gap-5 items-center text-center w-full max-w-5xl px-6 pt-16"
   >
-    <div class="z-20">
-      <!-- Nombre -->
+    <div>
       <p
-        class="text-foreground font-hero font-light text-3xl tracking-widest uppercase animate-fade-up animate-infinite
-      md:text-4xl"
+        class="text-foreground/80 font-hero font-light text-sm md:text-sm tracking-[0.8em] uppercase mb-3 ml-2"
       >
         Jhoyer
       </p>
 
-      <!-- Apellido -->
       <h1
-        class="text-foreground font-hero font-extrabold text-5xl sm:text-6xl md:text-8xl leading-none uppercase"
+        id="hero-title"
+        class="text-foreground font-hero font-semibold text-[16vw] sm:text-[12vw] md:text-[9rem] leading-[0.85] tracking-tighter uppercase"
       >
         Vega G.
       </h1>
-
-      <!-- Profesión -->
-      <p
-        class="text-foreground font-hero font-light text-sm tracking-[0.35em] mt-4 uppercase
-        md:text-base"
-      >
-        Desarrollador Web Full Stack
-      </p>
-
-      <!-- Botones -->
-      <div class="flex gap-4 mt-8 items-center justify-start
-      sm:gap-12">
-        <a
-          href="#about"
-          class="px-6 py-2 border border-border rounded-full text-sm font-medium font-sans transition cursor-pointer hover:scale-110 duration-300
-          bg-foreground text-background
-          md:text-base"
-        >
-          Sobre Mí
-        </a>
-        <a
-          href="#projects"
-          class="px-6 py-2 border rounded-full text-sm font-medium font-sans transition cursor-pointer hover:scale-110 duration-300
-          bg-linear-to-br from-accent to-secondary hover:bg-linear-to-bl text-background-foreground
-          md:text-base"
-        >
-          Proyectos
-        </a>
-        <!-- boton download cv -->
-        <div
-          class="bg-btn-cv text-btn-cv-foreground rounded-full w-20 h-10 hover:scale-110 duration-300
-           sm:w-24 sm:h-12
-           md:w-24 md:h-14
-           absolute top-5 right-5 z-10
-           md:static"
-        >
-          <a
-            href="/JhoyerVegaGuarachi-cv.pdf"
-            download="JhoyerVegaGuarachi-cv.pdf"
-            class="flex gap-2 items-center justify-center h-full w-full"
-            area-label="Download CV"
-          >
-            <div class="size-5 animate-bounce mt-1">
-              <Download />
-            </div>
-            <p class="text-sm my-auto">CV</p>
-          </a>
-        </div>
-      </div>
     </div>
-    <!-- links a linkedin y github -->
-    <div
-      class="w-auto flex gap-10 items-center justify-center absolute bottom-8 left-8 z-10
-        sm:bottom-15 sm:left-15
-        md:bottom-20 md:left-25 md:gap-20
-        lg:bottom-0 lg:top-0 lg:right-30 lg:justify-end"
+
+    <p
+      class="text-foreground/60 font-hero font-light text-xs md:text-lg tracking-[0.4em] mt-8 uppercase"
     >
-      <div
-        class="mt-8 w-10 h-10 text-[#007EBB] hover:scale-110 transition-transform duration-300
-          sm:w-12 sm:h-12
-          md:w-14 md:h-14"
+      Desarrollador Web Full Stack
+    </p>
+
+    <p
+      class="text-foreground/60 font-hero font-light text-sm md:text-md lg:text-lg mt-4 max-w-sm md:max-w-lg"
+    >
+      Transformando líneas de código en soluciones eficientes que impulsan el
+      rendimiento y los objetivos empresariales.
+    </p>
+
+    <div
+      class="flex flex-wrap gap-4 md:gap-6 mt-12 items-center justify-center"
+    >
+      <a
+        href="#about"
+        aria-label="Ir a la sección Sobre mí"
+        class="px-8 py-3.5 border border-border/90 bg-background/50 rounded-full text-xs font-light tracking-[0.15em] uppercase transition-all duration-300 hover:bg-foreground hover:text-background text-foreground backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-white"
       >
-        <a
-          target="_blank"
-          href="https://www.linkedin.com/in/jhoyer-vega-guarachi-431b24342/"
-          aria-label="LinkedIn link"><Linkedin /></a
-        >
-      </div>
-      <div
-        class="mt-8 rounded-full w-10 h-10 hover:scale-110 transition-transform duration-300
-           sm:w-12 sm:h-12
-           md:w-14 md:h-14"
+        Sobre Mí
+      </a>
+
+      <a
+        href="#projects"
+        aria-label="Ir a la sección Proyectos"
+        class="px-8 py-3.5 border border-border/90 bg-background/50 rounded-full text-xs font-light tracking-[0.15em] uppercase transition-all duration-300 hover:bg-foreground hover:text-background text-foreground backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-white"
       >
+        Proyectos
+      </a>
+
+      <div class="group z-10">
         <a
-          target="_blank"
-          href="https://github.com/jhoyer123"
-          aria-label="GitHub link"
-          class="hover:scale-3d"><GitHub /></a
+          href="/JhoyerVegaGuarachi-cv.pdf"
+          download="JhoyerVegaGuarachi-cv.pdf"
+          aria-label="Descargar currículum vitae en PDF"
+          class="flex gap-3 items-center justify-center px-8 py-3.5 border border-border/90 bg-background/50 rounded-full text-xs font-light tracking-[0.15em] uppercase transition-all duration-300 hover:bg-foreground hover:text-background text-foreground backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-white"
         >
+          <div
+            class="size-4 opacity-60 group-hover:opacity-100 transition-opacity animate-bounce"
+            aria-hidden="true"
+          >
+            <Download />
+          </div>
+
+          <p class="my-auto mt-0.5">CV</p>
+        </a>
       </div>
     </div>
   </div>
-  <!-- fondo hero -->
-  <div class="hidden absolute inset-0 md:block z-0">
+
+  <div
+    class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-10 items-center justify-center"
+    aria-label="Redes sociales"
+  >
+    <div
+      class="w-5 h-5 text-foreground/60 hover:text-foreground transition-colors duration-300"
+    >
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/jhoyer-vega-guarachi-431b24342/"
+        aria-label="Visitar perfil de LinkedIn"
+        class="block w-full h-full focus:outline-none focus:ring-2 focus:ring-white rounded-sm"
+      >
+        <span aria-hidden="true">
+          <Linkedin />
+        </span>
+      </a>
+    </div>
+
+    <div
+      class="w-5 h-5 text-foreground/60 hover:text-foreground transition-colors duration-300"
+    >
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/jhoyer123"
+        aria-label="Visitar perfil de GitHub"
+        class="block w-full h-full focus:outline-none focus:ring-2 focus:ring-white rounded-sm"
+      >
+        <span aria-hidden="true">
+          <GitHub />
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Desktop backgrounds -->
+  <div
+    class="hidden absolute inset-0 md:block z-0 opacity-30 mix-blend-luminosity"
+    aria-hidden="true"
+  >
     <img
       src="/assets/images/fondos/fondodesktop.webp"
-      alt="imagen de fondo hero desktop dark mode"
-      class="hero-dark hidden w-full h-full object-cover contrast-90 brightness-50"
+      alt=""
+      class="hero-dark hidden w-full h-full object-cover object-center contrast-125 brightness-75"
       loading="eager"
       decoding="async"
     />
+
     <img
       src="/assets/images/fondos/heroLigthDesktop.webp"
-      alt="imagen de fondo hero desktop light mode"
-      class="hero-light w-full h-full object-cover"
+      alt=""
+      class="hero-light w-full h-full object-cover object-center"
       loading="eager"
       decoding="async"
     />
   </div>
-  <div class="absolute inset-0 md:hidden z-0">
+
+  <!-- Mobile backgrounds -->
+  <div
+    class="absolute inset-0 md:hidden z-0 opacity-30 mix-blend-luminosity"
+    aria-hidden="true"
+  >
     <img
       src="/assets/images/fondos/fondoMobile.webp"
-      alt="imagen de fondo hero mobile dark mode"
-      class="hero-dark hidden w-full h-full object-cover"
+      alt=""
+      class="hero-dark hidden w-full h-full object-cover object-center"
       loading="eager"
       decoding="async"
     />
+
     <img
       src="/assets/images/fondos/heroLigthMobile.webp"
-      alt="imagen de fondo hero mobile ligth mode"
-      class="hero-light w-full h-full object-cover"
+      alt=""
+      class="hero-light w-full h-full object-cover object-center"
       loading="eager"
       decoding="async"
     />

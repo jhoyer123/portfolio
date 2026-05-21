@@ -2,7 +2,6 @@
 import Carrusel from "../carrusel/Carrusel.astro";
 import GitHub from "../icons/skills/Github.astro";
 import Laboratory from "../icons/Laboratory.astro";
-
 import type { Project } from "../Projects.astro";
 
 interface Props {
@@ -12,58 +11,81 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
-<div class="flex flex-col gap-20">
+<div class="flex flex-col gap-24 md:gap-32">
   {
     projects.map((p, index) => (
-      <div
-        class={`flex flex-col lg:flex-row gap-10 items-center ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}
+      <article
+        aria-labelledby={`project-title-${index}`}
+        class={`grid lg:grid-cols-12 gap-10 lg:gap-16 items-start project-item ${
+          index % 2 !== 0 ? "lg:[&>*:first-child]:order-2" : ""
+        }`}
       >
-        <div class="w-full lg:w-3/5 rounded-2xl overflow-hidden shadow-2xl border border-border bg-card p-2">
-          <Carrusel images={p.images} />
+        <div
+          class="lg:col-span-7 project-media w-full max-w-full overflow-hidden"
+          aria-label={`Galería del proyecto ${p.title}`}
+        >
+          <div class="border border-border bg-card/20 overflow-hidden p-1.5 sm:p-2 rounded-sm">
+            <Carrusel images={p.images} />
+          </div>
         </div>
 
-        <div class="w-full lg:w-2/5">
-          <div class="flex flex-wrap gap-2 mb-4">
+        <div class="lg:col-span-5 project-content pt-2">
+          <div
+            class="flex flex-wrap gap-2 mb-6"
+            aria-label="Tecnologías utilizadas"
+          >
             {p.tecnologies.map((t) => (
-              <span class="bg-card-accent border border-border text-white px-3 py-1 rounded-full text-xs font-medium">
+              <span class="px-3 py-1 border border-border text-foreground/65 font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase">
                 {t}
               </span>
             ))}
           </div>
 
-          <h3 class="text-2xl font-hero font-semibold mb-4 text-card-foreground uppercase tracking-tight">
+          <h3
+            id={`project-title-${index}`}
+            class="text-foreground font-sans text-2xl md:text-3xl font-medium tracking-tight mb-6"
+          >
             {p.title}
           </h3>
 
-          <p class="text-foreground mb-6 leading-relaxed font-sans text-sm md:text-base">
+          <p class="text-foreground/70 font-sans text-[14px] sm:text-[15px] leading-[1.9] font-light mb-8">
             {p.descripcion}
           </p>
 
-          <ul class="space-y-2 mb-6 font-sans text-foreground">
+          <ul
+            class="flex flex-col gap-3 mb-10"
+            aria-label="Características del proyecto"
+          >
             {p.features?.map((feature) => (
-              <li class="flex items-center text-sm md:text-base">
-                <span class="mr-2 text-card-accent">▹</span> {feature}
+              <li class="flex items-start gap-3 text-foreground/75 font-sans text-[13px] sm:text-[14px] leading-relaxed">
+                <span class="text-foreground/40 mt-[2px]" aria-hidden="true">
+                  ▹
+                </span>
+
+                <span>{feature}</span>
               </li>
             ))}
           </ul>
 
-          <div class="flex flex-wrap gap-4 w-full">
-            <a
-              aria-label={`Ver repositorio del proyecto ${p.title}`}
-              href={p.urlRepo}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-5 px-4 py-2.5 rounded-xl 
-           bg-gray-900 border border-border
-           text-white text-sm md:text-base font-medium font-sans
-           hover:border-card-accent hover:scale-105
-           transition-all duration-300 shadow-lg shadow-card-accent/30"
-            >
-              <div class="w-8">
-                <GitHub />
-              </div>
-              Ver Repositorio
-            </a>
+          {/* Acciones */}
+          <div class="flex flex-wrap gap-4">
+            {p.urlRepo && (
+              <a
+                aria-label={`Ver repositorio del proyecto ${p.title}`}
+                href={p.urlRepo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex items-center gap-3 border border-border px-5 py-3 text-foreground font-sans text-[10px] sm:text-[11px] tracking-[0.18em] uppercase hover:border-foreground/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white rounded-sm"
+              >
+                <div
+                  class="w-4 opacity-70 group-hover:opacity-100 transition-opacity"
+                  aria-hidden="true"
+                >
+                  <GitHub />
+                </div>
+                Repositorio
+              </a>
+            )}
 
             {p.urlDemo && (
               <a
@@ -71,21 +93,20 @@ const { projects } = Astro.props;
                 href={p.urlDemo}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-5 px-4 py-2.5 rounded-xl
-             bg-gray-900 border border-border
-           text-white text-sm md:text-base font-medium font-sans
-           hover:border-card-accent hover:scale-105
-           transition-all duration-300 shadow-lg shadow-card-accent/30"
+                class="group inline-flex items-center gap-3 border border-border px-5 py-3 text-foreground font-sans text-[10px] sm:text-[11px] tracking-[0.18em] uppercase hover:border-foreground/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white rounded-sm"
               >
-                <div class="w-8">
+                <div
+                  class="w-4 opacity-70 group-hover:opacity-100 transition-opacity"
+                  aria-hidden="true"
+                >
                   <Laboratory />
                 </div>
-                Ver Demo
+                Demo
               </a>
             )}
           </div>
         </div>
-      </div>
+      </article>
     ))
   }
 </div>

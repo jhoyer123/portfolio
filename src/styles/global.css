@@ -9,81 +9,76 @@
 
 @layer base {
   :root {
-    /* BACKGROUNDS */
-    --background: 0 0% 98%;
-    --foreground: 0 0% 10%;
-    --background-view: #fffffc;
-
-    --card-accent: #000000;
+    /* MODO CLARO: Estética Minimalista Galería de Arte */
+    --background: 240 5% 96%; /* Blanco hueso editorial */
+    --foreground: 240 10% 4%; /* Negro tinta puro */
+    --background-view: 240 5% 100%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 240 10% 4%;
+    --card-accent: 240 5% 85%;
 
-    /* SECONDARY: Sofisticación técnica */
-    --secondary: 220 10% 94%;
-    --secondary-foreground: 220 20% 20%;
+    --secondary: 240 5% 90%;
+    --secondary-foreground: 240 10% 12%;
 
-    /* RADIUS */
-    --radius: 0.5rem;
-    /* BORDERS / INPUT */
-    --border: 210 15% 85%;
-    --input: 210 15% 85%;
+    --muted: 240 4% 45%;
+    --muted-foreground: 240 4% 30%;
 
-    /* GLASS EFFECT */
+    --radius: 0.75rem;
+    --border: 240 5% 88%;
+    --input: 240 5% 88%;
+
     --glass: 0 0% 100% / 0.7;
-    --glass-border: 0 0% 100% / 0.18;
+    --glass-border: 240 5% 100% / 0.2;
 
-    --btn-cv: 0 0% 10%; /* Negro */
+    --btn-cv: 240 10% 4%;
     --btn-cv-fg: 0 0% 100%;
+    --accent-glow: rgba(59, 130, 246, 0.03);
   }
 
   .dark {
-    /* BACKGROUNDS */
-    --background: 0 0% 8%;
-    --foreground: 0 0% 95%;
-    --background-view: #212529;
+    /* MODO OSCURO: Cinematográfico, Premium Mate (Estilo Linear/Vercel) */
+    --background: 240 10% 3.9%; /* Negro carbón mate auténtico (#09090b) */
+    --foreground: 0 0% 98%; /* Blanco roto para evitar fatiga visual */
+    --background-view: 240 10% 6%;
 
-    --card-accent: #606b73;
+    --card: 240 10% 5.5%; /* Superficie grafito perfectamente balanceada */
+    --card-foreground: 0 0% 98%;
+    --card-accent: 240 5% 25%;
 
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 95%;
+    --secondary: 240 4% 12%; /* Contenedores secundarios neutros */
+    --secondary-foreground: 0 0% 98%;
 
-    /* SECONDARY - Grises oscuros elegantes */
-    --secondary: 210 10% 20%;
-    --secondary-foreground: 0 0% 95%;
+    --muted: 240 5% 65%; /* Texto secundario de alta legibilidad */
+    --muted-foreground: 240 5% 45%;
 
-    /* MUTED: Para textos secundarios que no distraigan */
-    --muted: 220 10% 15%;
-    --muted-foreground: 220 5% 65%;
+    --radius: 0.75rem;
+    --border: 240 5% 12%; /* Bordes finos premium */
+    --input: 240 5% 12%;
 
-    /* BORDERS / INPUT */
-    --border: 210 8% 22%;
-    --input: 210 8% 22%;
+    --glass: 240 10% 3.9% / 0.7;
+    --glass-border: 0 0% 100% / 0.06;
 
-    /* GLASS EFFECT */
-    --glass: 0 0% 8% / 0.7;
-    --glass-border: 0 0% 95% / 0.18;
-
-    --btn-cv: 0 0% 98%; /* Blanco */
-    --btn-cv-fg: 0 0% 5%;
+    --btn-cv: 0 0% 98%;
+    --btn-cv-fg: 240 10% 3.9%;
+    --accent-glow: rgba(59, 130, 246, 0.05);
   }
 
   html {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-/* MAPEO DE COLORES PARA TAILWIND */
 @theme inline {
   --color-background: hsl(var(--background));
-
-  --color-background-view: var(--background-view);
-  --color-card-accent: var(--card-accent);
-
+  --color-background-view: hsl(var(--background-view));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-accent: hsl(var(--card-accent));
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
   --color-muted: hsl(var(--muted));

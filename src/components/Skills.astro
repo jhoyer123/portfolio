@@ -2,179 +2,237 @@
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import GitHub from "../components/icons/skills/Github.astro";
 import Git from "../components/icons/skills/Git.astro";
-
 import Express from "../components/icons/skills/Express.astro";
 import Nodejs from "../components/icons/skills/Nodejs.astro";
 import MySQL from "../components/icons/skills/MySQL.astro";
 import PostgreSQL from "../components/icons/skills/PgSQL.astro";
+import AstroIcon from "./icons/skills/Astro.astro";
+import Nextjs from "./icons/skills/Nextjs.astro";
+import Supabase from "./icons/skills/Supabase.astro";
+import HTMLIcon from "./icons/skills/HTMLIcon.astro";
+import CSS from "./icons/skills/CSS.astro";
 
-type AstroComponent = AstroComponentFactory;
-
-const IconMap: Record<string, AstroComponent> = {
-  Git: Git,
-  GitHub: GitHub,
-  Express: Express,
-  Nodejs: Nodejs,
-  MySQL: MySQL,
-  PostgreSQL: PostgreSQL,
+const IconMap: Record<string, AstroComponentFactory> = {
+  Git,
+  GitHub,
+  Express,
+  Nodejs,
+  MySQL,
+  PostgreSQL,
+  Astro: AstroIcon,
+  Nextjs,
+  Supabase,
+  CSS,
+  HTMLIcon,
 };
 
-const toolsSkills = ["Git", "GitHub"];
-const backendSkills = ["Express", "Nodejs", "MySQL", "PostgreSQL"];
-
-interface Skill {
+type Skill = {
   name: string;
-  iconUrl: string;
-}
+  iconUrl?: string;
+  key?: string;
+  svgString?: string; // Añadido para soportar iconos SVG directamente en línea
+};
 
-//Lenguajes en AMBOS lados
-const coreLanguages: Skill[] = [
-  { name: "JavaScript", iconUrl: "/assets/icons/javascript.svg" },
-  { name: "TypeScript", iconUrl: "/assets/icons/typescript.svg" },
-];
-
-const frontendSkills: Skill[] = [
+const categories: { label: string; bentoClass: string; skills: Skill[] }[] = [
   {
-    name: "HTML",
-    iconUrl: "/assets/icons/html.svg",
+    label: "Frontend",
+    bentoClass: "md:col-span-2 lg:col-span-2",
+    skills: [
+      { name: "React", iconUrl: "/assets/icons/react.svg" },
+      { name: "Next.js", key: "Nextjs" },
+      { name: "Astro", key: "Astro" },
+      { name: "Tailwind", iconUrl: "/assets/icons/tailwindcss.svg" },
+      { name: "HTML", key: "HTMLIcon" },
+      { name: "CSS", key: "CSS" },
+    ],
   },
   {
-    name: "CSS",
-    iconUrl: "/assets/icons/css.svg",
+    label: "Backend & Data",
+    bentoClass: "md:col-span-2 lg:col-span-1",
+    skills: [
+      { name: "Node.js", key: "Nodejs" },
+      { name: "Express", key: "Express" },
+      { name: "MySQL", key: "MySQL" },
+      { name: "PostgreSQL", key: "PostgreSQL" },
+      { name: "Supabase", key: "Supabase" },
+    ],
   },
   {
-    name: "React",
-    iconUrl: "/assets/icons/react.svg",
+    label: "Core",
+    bentoClass: "md:col-span-1 lg:col-span-1",
+    skills: [
+      { name: "JavaScript", iconUrl: "/assets/icons/javascript.svg" },
+      { name: "TypeScript", iconUrl: "/assets/icons/typescript.svg" },
+    ],
   },
   {
-    name: "tailwindcss",
-    iconUrl: "/assets/icons/tailwindcss.svg",
+    label: "Herramientas",
+    bentoClass: "md:col-span-1 lg:col-span-2",
+    skills: [
+      { name: "Git", key: "Git" },
+      { name: "GitHub", key: "GitHub" },
+    ],
   },
-];
-
-const softSkills: string[] = [
-  "Responsabilidad y compromiso",
-  "Adaptabilidad a nuevos retos",
-  "Trabajo en equipo",
-  "Comunicación efectiva",
-  "Aprendizaje constante",
+  // NUEVAS SECCIONES BASADAS EN TU CV
+  {
+    label: "Habilidades Humanas",
+    bentoClass: "md:col-span-2 lg:col-span-2", // Se expande para dar respiro al texto
+    skills: [
+      {
+        name: "Trabajo en Equipo",
+        svgString: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>`,
+      },
+      {
+        name: "Comunicación Efectiva",
+        svgString: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>`,
+      },
+      {
+        name: "Aprendizaje Continuo",
+        svgString: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>`,
+      },
+    ],
+  },
+  {
+    label: "Metodologías & Idiomas",
+    bentoClass: "md:col-span-2 lg:col-span-1",
+    skills: [
+      {
+        name: "Scrum",
+        svgString: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>`,
+      },
+      {
+        name: "Castellano (Nativo)",
+        svgString: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>`,
+      },
+      {
+        name: "Inglés (A2)",
+        svgString: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802" /></svg>`,
+      },
+    ],
+  },
 ];
 ---
 
-<section id="skills" class="py-20 px-6 bg-background">
-  <div class="max-w-6xl mx-auto flex flex-col gap-8">
-    <!-- titulo -->
-    <div class="text-center">
+<section
+  id="skills"
+  aria-labelledby="skills-title"
+  class="py-24 md:py-36 bg-background px-6 sm:px-12 lg:px-8"
+>
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-16 md:mb-24">
       <h2
-        class="inline-block font-hero text-4xl font-bold text-foreground border-b-4 border-card-accent pb-2"
+        id="skills-title"
+        class="text-foreground/90 font-sans text-[10px] tracking-[0.4em] uppercase mb-12 md:mb-20"
       >
-        Habilidades
+        / Habilidades
       </h2>
-      <p class="text-muted-foreground mt-4 font-sans text-sm md:text-base">
-        Tecnologías que utilizo para construir soluciones Fullstack
-      </p>
     </div>
 
-    <div
-      class="bg-card p-6 rounded-3xl border border-border md:min-w-100 md:mx-auto lg:min-w-140"
-    >
-      <h3
-        class="font-bold font-hero mb-6 flex items-center gap-2 text-foreground italic"
-      >
-        Lenguajes
-      </h3>
-      <div class="grid grid-cols-2 justify-center gap-6 w-auto">
-        {
-          coreLanguages.map((s) => (
-            <div class="flex flex-col items-center p-3 rounded-xl transition border border-border bg-secondary hover:bg-secondary/80 group">
-              <img
-                src={s.iconUrl}
-                class="w-12 h-12 mb-2 group-hover:rotate-12 transition-all duration-300"
-                alt={s.name}
-              />
-              <span class="text-sm text-card-foreground">{s.name}</span>
-            </div>
-          ))
-        }
-      </div>
-    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      {
+        categories.map((cat) => (
+          <section
+            aria-labelledby={`skill-category-${cat.label}`}
+            class={`bg-card/5 border border-border/60 rounded-2xl p-6 md:p-8 flex flex-col skill-reveal hover:bg-card/10 transition-colors duration-500 ${cat.bentoClass}`}
+          >
+            <h3
+              id={`skill-category-${cat.label}`}
+              class="text-foreground/60 font-sans text-[11px] tracking-[0.3em] uppercase mb-8"
+            >
+              {cat.label}
+            </h3>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-      <div class="bg-card p-6 rounded-3xl border border-border">
-        <h3 class="font-bold font-hero mb-6 flex items-center gap-2 italic">
-          Frontend
-        </h3>
-        <div class="grid grid-cols-2 gap-4">
-          {
-            frontendSkills.map((s) => (
-              <div class="flex flex-col items-center p-3 rounded-xl transition border border-border bg-secondary hover:bg-secondary/80 group">
-                <img
-                  src={s.iconUrl}
-                  class="w-12 h-12 mb-2 group-hover:rotate-12 transition-all duration-300"
-                  alt={s.name}
-                />
-                <span class="text-sm text-card-foreground">{s.name}</span>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-
-      <div class="bg-card p-6 rounded-3xl border border-border">
-        <h3 class="font-bold font-hero mb-6 flex items-center gap-2 italic">
-          Backend
-        </h3>
-        <div class="grid grid-cols-2 gap-4">
-          {
-            backendSkills.map((t) => {
-              const Componente = IconMap[t];
-              return (
-                <div class="flex flex-col items-center p-3 rounded-xl transition border border-border bg-secondary hover:bg-secondary/80 group">
-                  <div class="w-12 h-12 mb-2 group-hover:rotate-12 transition-all duration-300">
-                    <Componente />
+            <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-auto-fit gap-4 mt-auto">
+              {cat.skills.map((s) => (
+                <li class="group flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-background border border-border/50 hover:border-foreground/30 hover:shadow-sm transition-all duration-300">
+                  {/* Contenedor del Icono */}
+                  <div
+                    class="w-8 h-8 flex items-center text-foreground justify-center opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                    aria-hidden="true"
+                  >
+                    {s.iconUrl ? (
+                      <img
+                        src={s.iconUrl}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        class="w-full h-full object-contain"
+                      />
+                    ) : s.key && IconMap[s.key] ? (
+                      (() => {
+                        const Icon = IconMap[s.key];
+                        return <Icon />;
+                      })()
+                    ) : s.svgString ? (
+                      <div
+                        aria-hidden="true"
+                        class="w-full h-full flex items-center justify-center [&>svg]:w-full [&>svg]:h-full"
+                        set:html={s.svgString}
+                      />
+                    ) : null}
                   </div>
-                  <span class="text-sm text-card-foreground">{t}</span>
-                </div>
-              );
-            })
-          }
-        </div>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-      <div class="bg-card p-6 rounded-3xl border border-border flex-1">
-        <h3 class="font-bold font-hero mb-6 italic">Herramientas</h3>
-        <div class="grid grid-cols-2 gap-4">
-          {
-            toolsSkills.map((t) => {
-              const Componente = IconMap[t];
-              return (
-                <div class="flex flex-col items-center p-3 rounded-xl transition border border-border bg-secondary hover:bg-secondary/80 group">
-                  <div class="w-12 h-12 mb-2 group-hover:rotate-12 transition-all duration-300">
-                    <Componente />
-                  </div>
-                  <span class="text-sm text-card-foreground">{t}</span>
-                </div>
-              );
-            })
-          }
-        </div>
-      </div>
 
-      <div class="bg-card p-6 rounded-3xl border border-input">
-        <h3 class="font-bold font-hero mb-4 italic text-card-foreground">
-          Soft Skills
-        </h3>
-        <ul class="space-y-2">
-          {
-            softSkills.map((ss) => (
-              <li class="flex items-center gap-2 text-sm text-card-foreground font-sans md:text-base">
-                <span class="text-card-accent">✦</span> {ss}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+                  {/* Nombre */}
+                  <span class="text-foreground/80 font-sans text-[12px] sm:text-[13px] font-medium group-hover:text-foreground transition-colors duration-200 text-center leading-tight">
+                    {s.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
     </div>
   </div>
 </section>
+
+<style>
+  .grid-cols-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  }
+
+  .skill-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out;
+  }
+
+  .skill-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skill-reveal,
+    .skill-reveal.visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const initSkillsObserver = () => {
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            observer.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+    );
+
+    document.querySelectorAll(".skill-reveal").forEach((el, i) => {
+      (el as HTMLElement).style.transitionDelay = `${i * 0.1}s`;
+      observer.observe(el);
+    });
+  };
+
+  initSkillsObserver();
+  document.addEventListener("astro:page-load", initSkillsObserver);
+</script>

@@ -8,20 +8,20 @@ const { images } = Astro.props;
 ---
 
 <div
-  class="swiper mySwiper w-full lg:h-[450px] sm:h-90 h-50 relative group galery"
+  class="swiper mySwiper w-full relative group bg-background overflow-hidden rounded-sm"
 >
-  <div class="swiper-wrapper galery-content w-full h-full">
+  <div class="swiper-wrapper w-full">
     {
       images.map((img, index) => (
-        <div class="swiper-slide bg-gray-100 rounded-2xl p-2 item-galery">
+        <div class="swiper-slide w-full aspect-video sm:aspect-16/10 flex justify-center items-center overflow-hidden cursor-zoom-in group/img bg-card/5">
           <Image
             src={img}
-            quality={95}
-            alt="Imagen del proyecto"
+            quality={90}
+            alt="Captura del proyecto"
             loading={index === 0 ? "eager" : "lazy"}
-            widths={[800, 1000, 1600, 2000]}
-            sizes="(max-width: 768px) 100vw, 90vw"
-            class="w-full h-full object-contain rounded-2xl"
+            widths={[600, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 80vw"
+            class="w-full h-full object-contain p-1 transition-transform duration-700 ease-out group-hover/img:scale-105"
             format="webp"
           />
         </div>
@@ -29,131 +29,145 @@ const { images } = Astro.props;
     }
   </div>
 
-  <div class="swiper-pagination"></div>
+  <div class="swiper-pagination bottom-2! sm:bottom-4!"></div>
 
-  <div class="swiper-button-prev lg:opacity-0 group-hover:opacity-100 z-10">
+  <div
+    class="swiper-button-prev text-foreground/50! hover:text-foreground! transition-colors duration-300 left-2! sm:left-4! scale-50 sm:scale-75 lg:opacity-0 group-hover:opacity-100 z-10"
+  >
   </div>
-  <div class="swiper-button-next lg:opacity-0 group-hover:opacity-100 z-10">
+  <div
+    class="swiper-button-next text-foreground/50! hover:text-foreground! transition-colors duration-300 right-2! sm:right-4! scale-50 sm:scale-75 lg:opacity-0 group-hover:opacity-100 z-10"
+  >
   </div>
-
-  <div class="swiper-scrollbar"></div>
 </div>
 
 <script>
   import Swiper from "swiper";
   import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
-  //Obtenemos la lista.
-  const carousels = document.querySelectorAll(".mySwiper");
+  const initCarousels = () => {
+    // 1. Singleton Modal (Lightbox)
+    let lightbox = document.getElementById("global-image-lightbox");
 
-  carousels.forEach((element) => {
-    //Convertimos 'element' (que es genérico) a 'HTMLElement' (específico)
-    const carouselElement = element as HTMLElement;
+    if (!lightbox) {
+      lightbox = document.createElement("div");
+      lightbox.id = "global-image-lightbox";
+      lightbox.className =
+        "fixed inset-0 z-[9999] bg-background/98 backdrop-blur-md hidden opacity-0 transition-opacity duration-300 flex items-center justify-center cursor-zoom-out p-4";
+      lightbox.innerHTML = `
+        <button aria-label="Cerrar imagen" class="absolute top-4 right-4 sm:top-8 sm:right-8 text-foreground/70 hover:text-foreground tracking-[0.2em] uppercase text-[10px] font-sans transition-colors duration-200 bg-background/50 px-4 py-2 rounded-full border border-border z-50">Cerrar ✕</button>
+        <img src="" alt="Zoom" class="max-w-full max-h-full object-contain drop-shadow-2xl scale-95 transition-transform duration-300 ease-out select-none" />
+      `;
+      document.body.appendChild(lightbox);
 
-    const slidesCount =
-      carouselElement.querySelectorAll(".swiper-slide").length;
+      const closeModal = () => {
+        lightbox!.classList.replace("opacity-100", "opacity-0");
+        const img = lightbox!.querySelector("img");
+        if (img) img.classList.replace("scale-100", "scale-95");
 
-    const swiperInstance = new Swiper(carouselElement, {
-      modules: [Navigation, Pagination, Autoplay],
-      spaceBetween: 30,
-      centeredSlides: true,
-      loop: slidesCount > 3,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: carouselElement.querySelector(".swiper-pagination") as HTMLElement,
-        clickable: true,
-      },
-      navigation: {
-        nextEl: carouselElement.querySelector(
-          ".swiper-button-next",
-        ) as HTMLElement,
-        prevEl: carouselElement.querySelector(
-          ".swiper-button-prev",
-        ) as HTMLElement,
-      },
-    });
+        setTimeout(() => {
+          lightbox!.classList.add("hidden");
+          if (img) img.src = "";
+        }, 300);
+        document.body.style.overflow = "";
+      };
 
-    //Lógica del click
-    const imgs = carouselElement.querySelectorAll("img");
+      lightbox.addEventListener("click", closeModal);
+    }
 
-    imgs.forEach((img) => {
-      img.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const expanded = carouselElement.classList.toggle("expanded");
-        document.body.style.overflow = expanded ? "hidden" : "";
-        img.style.cursor = expanded ? "zoom-out" : "zoom-in";
-        swiperInstance.update();
+    // 2. Inicializar todos los carruseles
+    const carousels = document.querySelectorAll(".mySwiper");
+
+    carousels.forEach((element) => {
+      const carouselElement = element as HTMLElement;
+
+      if ((carouselElement as any).swiper) return;
+
+      const slidesCount =
+        carouselElement.querySelectorAll(".swiper-slide").length;
+
+      new Swiper(carouselElement, {
+        modules: [Navigation, Pagination, Autoplay],
+        spaceBetween: 0,
+        slidesPerView: 1,
+        loop: slidesCount > 1,
+        grabCursor: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: carouselElement.querySelector(
+            ".swiper-pagination",
+          ) as HTMLElement,
+          clickable: true,
+        },
+        navigation: {
+          nextEl: carouselElement.querySelector(
+            ".swiper-button-next",
+          ) as HTMLElement,
+          prevEl: carouselElement.querySelector(
+            ".swiper-button-prev",
+          ) as HTMLElement,
+        },
+      });
+
+      // 3. Conectar imágenes al Lightbox
+      const imgs = carouselElement.querySelectorAll("img");
+      imgs.forEach((img) => {
+        img.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const target = e.target as HTMLImageElement;
+          const lightboxImg = lightbox!.querySelector("img");
+
+          if (lightboxImg) lightboxImg.src = target.src;
+
+          lightbox!.classList.remove("hidden");
+          requestAnimationFrame(() => {
+            lightbox!.classList.replace("opacity-0", "opacity-100");
+            if (lightboxImg)
+              lightboxImg.classList.replace("scale-95", "scale-100");
+          });
+
+          document.body.style.overflow = "hidden";
+        });
       });
     });
+  };
 
-    carouselElement.addEventListener("click", (e) => {
-      if (
-        carouselElement.classList.contains("expanded") &&
-        e.target === carouselElement
-      ) {
-        carouselElement.classList.remove("expanded");
-        document.body.style.overflow = "";
-        imgs.forEach((img) => (img.style.cursor = "zoom-in"));
-        swiperInstance.update();
-      }
-    });
-  });
+  initCarousels();
+  document.addEventListener("astro:page-load", initCarousels);
 </script>
 
-<style>
+<style is:global>
   @import "swiper/css";
   @import "swiper/css/navigation";
   @import "swiper/css/pagination";
 
-  .galery.expanded {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 9999;
-    cursor: zoom-out;
+  .swiper-pagination-bullet {
+    background-color: hsl(var(--foreground) / 0.2) !important;
+    opacity: 1 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 
-  .galery.expanded .swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: none;
-    background-color: transparent;
-    border-radius: 0;
+  .swiper-pagination-bullet-active {
+    background-color: hsl(var(--foreground) / 0.8) !important;
+    width: 20px !important;
+    border-radius: 4px !important;
   }
 
-  .galery.expanded img {
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-radius: 0;
-  }
-
-  /* Desktop */
-  @media (min-width: 768px) {
-    .galery.expanded img {
-      max-width: 80%;
-      max-height: 80vh;
+  @media (max-width: 640px) {
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 1rem !important;
     }
   }
 
-  /* Mobile */
-  @media (max-width: 767px) {
-    .galery.expanded img {
-      max-width: 100%;
-      max-height: 90vh;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .galery.expanded .swiper-button-prev,
-    .galery.expanded .swiper-button-next {
-      display: none;
+  @media (min-width: 641px) {
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
     }
   }
 </style>

@@ -19,109 +19,107 @@ const links = [
 ];
 ---
 
-<!-- BOTÓN HAMBURGUESA -->
+<!-- btn close and open -->
 <button
   id="menu-btn"
-  class="md:hidden fixed top-4 left-4 z-60 p-3 bg-gray-600 text-white rounded-lg cursor-pointer"
-  aria-label="Abrir menú"
+  type="button"
+  class="md:hidden text-foreground/80 fixed top-6 right-6 z-60 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white rounded-md"
+  aria-label="Abrir menú de navegación"
+  aria-controls="sidebar"
+  aria-expanded="false"
 >
   <svg
     id="icon-open"
     xmlns="http://www.w3.org/2000/svg"
     class="w-6 h-6"
-    fill="none"
+    fill="currentColor"
     viewBox="0 0 24 24"
     stroke="currentColor"
+    aria-hidden="true"
   >
     <path
       stroke-linecap="round"
       stroke-linejoin="round"
-      stroke-width="2"
+      stroke-width="1.5"
       d="M4 6h16M4 12h16m0 6H4"></path>
   </svg>
+
   <svg
     id="icon-close"
     xmlns="http://www.w3.org/2000/svg"
     class="w-6 h-6 hidden z-100"
-    fill="none"
+    fill="currentColor"
     viewBox="0 0 24 24"
     stroke="currentColor"
+    aria-hidden="true"
   >
     <path
       stroke-linecap="round"
       stroke-linejoin="round"
-      stroke-width="2"
+      stroke-width="1.5"
       d="M6 18L18 6M6 6l12 12"></path>
   </svg>
 </button>
 
-<!-- SIDEBAR -->
+<!-- Aside nav -->
 <nav
   id="sidebar"
+  aria-label="Navegación principal"
   class="bg-background
-    /* --- ESTADO MÓVIL --- */
     fixed top-0 left-0 h-screen w-screen
-    p-4 -translate-x-full /* <-- Estado inicial: Oculto fuera de pantalla */
+    p-4 -translate-x-full
     transform transition-transform duration-300 ease-in-out
-    md:transition-none /* <-- Transición */
-    z-50 rounded-r-lg border-solid border-border
-    /* --- ESTADO DESKTOP --- */
-    md:bg-[hsl(var(--glass))]
-    md:backdrop-blur-[10px]
-    md:border-[hsl(var(--glass-border))]
-    md:shadow-[0_8px_32px_0_rgba(0,0,0,0.1)]
-    md:fixed md:translate-x-0 md:h-auto md:w-full
-    md:top-0 md:pt-0 md:pb-0 md:rounded-none md:border-0"
+    md:transition-none
+    z-50 border-r border-border
+    md:bg-transparent
+    md:backdrop-blur-sm
+    md:fixed md:translate-x-0 md:h-24 md:w-full
+    md:top-0 md:p-0 md:rounded-none md:border-0"
 >
   <div
-    class="flex flex-col gap-10 h-full my-auto items-center justify-center w-full text-foreground
-  md:flex-row md:justify-between sm:px-5
-  lg:px-20
-  xl:px-60"
+    class="flex flex-col gap-10 h-full my-auto items-center justify-center w-full max-w-7xl mx-auto md:flex-row md:justify-between px-6 lg:px-12 text-foreground"
   >
     <div class="md:hidden">
-      <div class="md:hidden">
-        <Image
-          src={profileImage}
-          alt="imagen de perfil de jhoyer"
-          width={128}
-          height={128}
-          quality={85}
-          format="webp"
-          loading="lazy"
-          class="rounded-full h-32 w-32 object-cover"
-        />
-      </div>
+      <Image
+        src={profileImage}
+        alt="Foto de perfil de Jhoyer Vega"
+        width={128}
+        height={128}
+        quality={85}
+        format="webp"
+        loading="lazy"
+        class="rounded-full h-32 w-32 object-cover grayscale"
+      />
     </div>
 
     <div
-      class="text-xl font-hero md:block md:text-3xl text-foreground font-extrabold"
+      class="text-xl font-hero md:text-lg text-foreground font-medium tracking-[0.3em] uppercase"
     >
-      <span>JVG</span>
+      <span aria-label="Logo JVG">JVG</span>
     </div>
-    <!-- navegación items -->
+
     <ul
-      class="flex flex-col items-center justify-center md:flex-row md:justify-center gap-4 w-full py-2 md:text-base
-      md:w-auto md:gap-10 md:py-1
-      lg:gap-13"
+      class="flex flex-col items-center justify-center md:flex-row gap-6 md:gap-10 w-full py-2 md:text-xs font-sans font-light tracking-widest uppercase md:w-auto md:py-0 text-muted-foreground"
     >
       {
         links.map((link) => (
-          <li
-            class="w-auto min-w-[200px] py-2 px-8 flex items-center justify-start gap-3 rounded-2xl transition
-         md:hover:scale-110 md:min-w-auto md:px-0 md:gap-0 md:hover:bg-transparent  
-          "
-          >
-            <div class="md:hidden">
+          <li class="flex items-center justify-start gap-3 transition-colors duration-300 hover:text-foreground">
+            <div class="md:hidden" aria-hidden="true">
               <link.icon />
             </div>
-            <a href={link.href}>{link.label}</a>
+
+            <a
+              href={link.href}
+              class="focus:outline-none focus:ring-2 focus:ring-white rounded-sm"
+              aria-label={link.label}
+            >
+              {link.label}
+            </a>
           </li>
         ))
       }
     </ul>
 
-    <!-- toggle theme -->
     <ThemeToggle />
   </div>
 </nav>
