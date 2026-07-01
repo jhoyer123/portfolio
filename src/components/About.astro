@@ -6,19 +6,21 @@ import profileImage from "../../public/assets/profile/profile.webp";
 <section
   id="about"
   aria-labelledby="about-title"
-  class="py-16 md:py-28 bg-background"
+  class="pt-16 md:pt-28 pb-8 bg-background"
 >
   <div class="px-6 mx-auto max-w-6xl sm:px-12 lg:px-8">
     <h2
       id="about-title"
-      class="text-foreground/90 font-sans text-[10px] tracking-[0.4em] uppercase mb-12 md:mb-20"
+      class="text-foreground/90 font-sans text-[10px] tracking-[0.4em] uppercase mb-12 md:mb-15 lg:mb-18"
     >
       / Sobre mí
     </h2>
 
-    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <div
+      class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center justify-items-center"
+    >
       <!-- Imagen -->
-      <div class="lg:col-span-5 about-img">
+      <div class="lg:col-span-4 about-img">
         <div class="relative w-full aspect-3/4 overflow-hidden">
           <Image
             src={profileImage}
@@ -49,7 +51,9 @@ import profileImage from "../../public/assets/profile/profile.webp";
               Disponible
             </span>
 
-            <span class="text-foreground font-sans text-[11px] font-medium">
+            <span
+              class="text-foreground font-sans text-[11px] md:text-[13px] font-medium"
+            >
               Sí
             </span>
           </div>
@@ -63,7 +67,9 @@ import profileImage from "../../public/assets/profile/profile.webp";
               Ubicación
             </span>
 
-            <span class="text-foreground font-sans text-[11px] font-medium">
+            <span
+              class="text-foreground font-sans text-[11px] md:text-[13px] font-medium"
+            >
               Bolivia
             </span>
           </div>
@@ -71,9 +77,9 @@ import profileImage from "../../public/assets/profile/profile.webp";
       </div>
 
       <!-- Texto -->
-      <div class="lg:col-span-7 flex flex-col gap-8 about-text pt-1">
+      <div class="lg:col-span-8 flex flex-col gap-8 about-text pt-1">
         <div
-          class="flex flex-col gap-4 font-sans text-foreground/70 text-[15px] leading-[1.8] font-light"
+          class="flex flex-col gap-4 font-sans text-foreground/70 text-[15px] md:text-[17px] leading-[1.8] font-light"
         >
           <p>
             Desarrollador Full Stack con formación en Informática (UMSA),
